@@ -19,6 +19,7 @@ Design.info = {
 	"short_desc": "Template design file demoing project setup.",
 	"long_desc": "",
 	"url": null,
+	"message": "Control the parametrs of the cube using these controls.",
 	"tags": [ "", "" ]
 }
 
