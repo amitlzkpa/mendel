@@ -19,7 +19,7 @@ Design.info = {
 	"short_desc": "Template design file demoing project setup.",
 	"long_desc": "",
 	"url": null,
-	"message": "Control the parametrs of the cube using these controls.",
+	"message": "Control the parameters of the cube using these controls.",
 	"tags": [ "", "" ]
 }
 
@@ -58,6 +58,7 @@ Design.inputs = {
 	"width": { 
 		"type": "slider",
 		"label": "Width",
+		"tip": "Control the width",
 		"default": 150,
 		"min": 100,
 		"max": 200
@@ -71,6 +72,7 @@ Design.inputs = {
 	},
 	"doubleWidth": {
 		"type": "bool",
+		"tip": "Doubles the width",
 		"label": "Double Width",
 		"default": false
 	},
@@ -83,6 +85,7 @@ Design.inputs = {
 	"finish": {
 		"type": "select",
 		"label": "Finish",
+		"tip": "Control the finish of the material",
 		"default": FIN_MATT,
 		"choices": [FIN_MATT, FIN_GLOSS]
 	}
