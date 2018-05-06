@@ -130,11 +130,14 @@ Design.onParamChange = function(params) {
  *									at the end. Called after parameters are 
  *									updated
  */
-Design.updateGeom = function(group) {
+Design.updateGeom = function(group, sliceManager) {
 	var geometry = new THREE.BoxGeometry( 200, Design.inputState.height, Design.inputState.width * ((Design.inputState.doubleWidth) ? 2 : 1) );
 	var material = getMaterial(Design.inputState.colour, Design.inputState.finish);
 	var cube = new THREE.Mesh( geometry, material );
-	cube.position.y = Design.inputState.height/2;
+
+	sliceManager.addSliceSet({uDir: true, start: -80, end: 80, cuts: 3});
+	sliceManager.addSliceSet({uDir: false, start: -90, end: 90, cuts: 4});
+
 	group.add( cube );
 }
 
