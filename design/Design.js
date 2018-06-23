@@ -53,13 +53,18 @@ Design.inputs = {
 		"min": 6,
 		"max": 80
 	},
-	"weight": { 
-		"type": "slider",
-		"label": "Weight",
-		"tip": "in kilos",
-		"default": 80,
-		"min": 30,
-		"max": 200
+	"sleep-style": { 
+		"type": "select",
+		"label": "Sleep Style",
+		"tip": "Are you a tight sleeper or do you like to spread yourself?",
+		"default": "tight",
+		"choices": [ "tight", "comfy", "luxurious" ]
+	},
+	"double-bed": {
+		"type": "bool",
+		"tip": "",
+		"label": "DoubleBed",
+		"default": false
 	},
 	"headrest": {
 		"type": "bool",
