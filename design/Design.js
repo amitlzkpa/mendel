@@ -70,7 +70,7 @@ Design.inputs = {
 		"type": "bool",
 		"tip": "",
 		"label": "Headrest",
-		"default": false
+		"default": true
 	},
 	"sidetable": {
 		"type": "bool",
@@ -96,15 +96,6 @@ Design.inputState = {}
 
 
 
-var matLine_black = new THREE.LineBasicMaterial({ linewidth: 80, color: 0x000000, linecap: 'round', linejoin:  'round' });
-var matLine_white = new THREE.LineBasicMaterial({ linewidth: 80, color: 0xffffff, linecap: 'round', linejoin:  'round' });
-var matMesh_debug = new THREE.MeshNormalMaterial( { side: THREE.DoubleSide, wireframe: false, flatShading: THREE.SmoothShading, transparent: true, opacity: 0.4 });
-
-var matMesh_red = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, color: 0xd32f2f } );
-var matMesh_blue = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, color: 0x01579b } );
-var matMesh_green = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, color: 0x33691e } );
-var matMesh_wirewhite = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
-
 
 function map_range(value, low1, high1, low2, high2, interp="lin") {
 	var val = low2 + (high2 - low2) * (value - low1) / (high1 - low1);
@@ -116,11 +107,6 @@ function map_range(value, low1, high1, low2, high2, interp="lin") {
 // http://www.wolframalpha.com/examples/math/algebra/polynomials/
 // quadratic functions
 
-// 30 -> 1	|	60 -> 1.02	|	120 -> 1.2		|	150 -> 1.4
-function getWeightMul(wt) {
-	return (0.0000333333 * Math.pow(wt, 2)) - (0.00273333 * wt) + 1.056;
-}
-
 
 // 12 -> 0.6	|	30 -> 0.9	|	50 -> 1		|	60 -> 0.95
 function getAgeMul(age) {
@@ -129,27 +115,11 @@ function getAgeMul(age) {
 
 
 
-var w_mul = 1;
-var w_innerMul = 1;
-var w_outerMul = 1.7;
-
-var add_highback_y = 0;
-var add_highback_z = 0;
-
-var add_weight_out_y = 0;
-var add_weight_in_y = 0;
-
-var add_age_z = 0;
-
-var activeMat = matMesh_red;
-
 
 function updatePts() {
 
 	// age alterations - scale the whole design by a factor depending on age
 	var age = Design.inputState.age;
-	var agemin = Design.inputs.age.min;
-	var agemax = Design.inputs.age.max;
 	// scale factor is non-linear and follows a quadratic curve
 	var sc = getAgeMul(age);
 
@@ -180,104 +150,18 @@ function updatePts() {
 
 
 
-	// high-back alterations - move certain parts of base, back, top and seat curve backwards and upwards
-	// (move it back to avoid the feeling of sitting against a vertical wall) 
-	add_highback_y = Design.inputState["high-back"] ? 120 : 0;
-	add_highback_z = Design.inputState["high-back"] ? 40 : 0;
 
-	add_weight_out_y = map_range(Design.inputState["weight"], Design.inputs.weight.min, Design.inputs.weight.max, 0, 90);
-	add_weight_in_y = map_range(Design.inputState["weight"], Design.inputs.weight.min, Design.inputs.weight.max, 0, 60);
-
-	add_age_z = map_range(Design.inputState["age"], Design.inputs.age.min, Design.inputs.age.max, 0, 80);
-
-	// move end of base-curve back to give more grounding
-	i_bs_pts[0][2] -= add_age_z;
-	o_bs_pts[0][2] -= add_age_z;
-	i_bs_pts[2][2] += add_highback_z;
-	o_bs_pts[2][2] += add_highback_z;
-	i_bs_pts_mirr[0][2] -= add_age_z;
-	o_bs_pts_mirr[0][2] -= add_age_z;
-	i_bs_pts_mirr[2][2] += add_highback_z;
-	o_bs_pts_mirr[2][2] += add_highback_z;
-	i_bk_pts[0][2] += add_highback_z;
-	o_bk_pts[0][2] += add_highback_z;
-	i_bk_pts_mirr[0][2] += add_highback_z;
-	o_bk_pts_mirr[0][2] += add_highback_z;
-
-	// move back curve up and back
-	i_bk_pts[1][1] += add_highback_y + add_weight_in_y; i_bk_pts[1][2] += add_highback_z;
-	i_bk_pts[2][1] += add_highback_y + add_weight_in_y; i_bk_pts[2][2] += add_highback_z;
-	o_bk_pts[1][1] += add_highback_y + add_weight_out_y; o_bk_pts[1][2] += add_highback_z;
-	o_bk_pts[2][1] += add_highback_y + add_weight_out_y; o_bk_pts[2][2] += add_highback_z;
-	i_bk_pts_mirr[1][1] += add_highback_y + add_weight_in_y; i_bk_pts_mirr[1][2] += add_highback_z;
-	i_bk_pts_mirr[2][1] += add_highback_y + add_weight_in_y; i_bk_pts_mirr[2][2] += add_highback_z;
-	o_bk_pts_mirr[1][1] += add_highback_y + add_weight_out_y; o_bk_pts_mirr[1][2] += add_highback_z;
-	o_bk_pts_mirr[2][1] += add_highback_y + add_weight_out_y; o_bk_pts_mirr[2][2] += add_highback_z;
-
-	// move top-curve full up and back
-	i_tp_pts[0][1] += add_highback_y + add_weight_in_y; i_tp_pts[0][2] += add_highback_z;
-	i_tp_pts[1][1] += add_highback_y + add_weight_in_y; i_tp_pts[1][2] += add_highback_z;
-	i_tp_pts[2][1] += add_highback_y + add_weight_in_y; i_tp_pts[2][2] += add_highback_z;
-	o_tp_pts[0][1] += add_highback_y + add_weight_out_y; o_tp_pts[0][2] += add_highback_z;
-	o_tp_pts[1][1] += add_highback_y + add_weight_out_y; o_tp_pts[1][2] += add_highback_z;
-	o_tp_pts[2][1] += add_highback_y + add_weight_out_y; o_tp_pts[2][2] += add_highback_z;
-	i_tp_pts_mirr[0][1] += add_highback_y + add_weight_in_y; i_tp_pts_mirr[0][2] += add_highback_z;
-	i_tp_pts_mirr[1][1] += add_highback_y + add_weight_in_y; i_tp_pts_mirr[1][2] += add_highback_z;
-	i_tp_pts_mirr[2][1] += add_highback_y + add_weight_in_y; i_tp_pts_mirr[2][2] += add_highback_z;
-	o_tp_pts_mirr[0][1] += add_highback_y + add_weight_out_y; o_tp_pts_mirr[0][2] += add_highback_z;
-	o_tp_pts_mirr[1][1] += add_highback_y + add_weight_out_y; o_tp_pts_mirr[1][2] += add_highback_z;
-	o_tp_pts_mirr[2][1] += add_highback_y + add_weight_out_y; o_tp_pts_mirr[2][2] += add_highback_z;
-
-	// move only top of seat curve up and back
-	i_st_pts[0][1] += add_highback_y + add_weight_in_y; i_st_pts[0][2] += add_highback_z;
-	o_st_pts[0][1] += add_highback_y + add_weight_out_y; o_st_pts[0][2] += add_highback_z;
-	i_st_pts_mirr[0][1] += add_highback_y + add_weight_in_y; i_st_pts_mirr[0][2] += add_highback_z;
-	o_st_pts_mirr[0][1] += add_highback_y + add_weight_out_y; o_st_pts_mirr[0][2] += add_highback_z;
-
-	i_st_pts[2][2] -= add_age_z;
-	o_st_pts[2][2] -= add_age_z;
-	i_st_pts_mirr[2][2] -= add_age_z;
-	o_st_pts_mirr[2][2] -= add_age_z;
-
-	i_ft_pts[0][2] -= add_age_z; i_ft_pts[1][2] -= add_age_z; i_ft_pts[2][2] -= add_age_z;
-	o_ft_pts[0][2] -= add_age_z; o_ft_pts[1][2] -= add_age_z; o_ft_pts[2][2] -= add_age_z;
-	i_ft_pts_mirr[0][2] -= add_age_z; i_ft_pts_mirr[1][2] -= add_age_z; i_ft_pts_mirr[2][2] -= add_age_z;
-	o_ft_pts_mirr[0][2] -= add_age_z; o_ft_pts_mirr[1][2] -= add_age_z; o_ft_pts_mirr[2][2] -= add_age_z;
+	var sleepstyle = Design.inputState["sleep-style"];
+	var doublebed = Design.inputState["double-bed"];
+	var wantsheadrest = Design.inputState["headrest"];
+	var wantssidetable = Design.inputState["sidetable"];
 
 
+	console.log(sleepstyle);
+	console.log(doublebed);
+	console.log(wantsheadrest);
+	console.log(wantssidetable);
 
-	// weight alterations - alters the width of the chair and sink
-	var wt = Design.inputState.weight;
-	var wtMin = Design.inputs.weight.min;
-	var wtMax = Design.inputs.weight.max;
-	// dispalcement factor is non-linear and follows a quadratic curve
-	var w_mul = getWeightMul(wt);
-	var innerX = i_bs_pts[0][0] * w_mul * w_innerMul;
-	var outerX = i_bs_pts[0][0] * w_mul * w_outerMul;
-
-	i_bs_pts.forEach(d => d[0] = innerX);
-	i_bk_pts.forEach(d => d[0] = innerX);
-	i_tp_pts.forEach(d => d[0] = innerX);
-	i_st_pts.forEach(d => d[0] = innerX);
-	i_ft_pts.forEach(d => d[0] = innerX);
-
-	o_bs_pts.forEach(d => d[0] = outerX);
-	o_bk_pts.forEach(d => d[0] = outerX);
-	o_tp_pts.forEach(d => d[0] = outerX);
-	o_st_pts.forEach(d => d[0] = outerX);
-	o_ft_pts.forEach(d => d[0] = outerX);
-
-	i_bs_pts_mirr.forEach(d => d[0] = -innerX);
-	i_bk_pts_mirr.forEach(d => d[0] = -innerX);
-	i_tp_pts_mirr.forEach(d => d[0] = -innerX);
-	i_st_pts_mirr.forEach(d => d[0] = -innerX);
-	i_ft_pts_mirr.forEach(d => d[0] = -innerX);
-
-	o_bs_pts_mirr.forEach(d => d[0] = -outerX);
-	o_bk_pts_mirr.forEach(d => d[0] = -outerX);
-	o_tp_pts_mirr.forEach(d => d[0] = -outerX);
-	o_st_pts_mirr.forEach(d => d[0] = -outerX);
-	o_ft_pts_mirr.forEach(d => d[0] = -outerX);
 
 }
 
@@ -369,9 +253,6 @@ Design.init = function() {
  */
 Design.onParamChange = function(params) {
 	this.inputState = params;
-	if (this.inputState.colour == "Red") activeMat = matMesh_red;
-	if (this.inputState.colour == "Blue") activeMat = matMesh_blue;
-	if (this.inputState.colour == "Green") activeMat = matMesh_green;
 	updatePts();
 }
 
@@ -414,30 +295,6 @@ Design.updateGeom = function(group, sliceManager) {
 	var o_tp_mirr = verb.geom.NurbsCurve.byPoints( o_tp_pts_mirr, 2 );
 	var o_st_mirr = verb.geom.NurbsCurve.byPoints( o_st_pts_mirr, 2 );
 	var o_ft_mirr = verb.geom.NurbsCurve.byPoints( o_ft_pts_mirr, 2 );
-
-	// obj.add(new THREE.Line( i_bs.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_bk.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_tp.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_st.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_ft.toThreeGeometry(), matLine_black ));
-
-	// obj.add(new THREE.Line( o_bs.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_bk.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_tp.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_st.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_ft.toThreeGeometry(), matLine_black ));
-
-	// obj.add(new THREE.Line( i_bs_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_bk_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_tp_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_st_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( i_ft_mirr.toThreeGeometry(), matLine_black ));
-
-	// obj.add(new THREE.Line( o_bs_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_bk_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_tp_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_st_mirr.toThreeGeometry(), matLine_black ));
-	// obj.add(new THREE.Line( o_ft_mirr.toThreeGeometry(), matLine_black ));
 
 
 	// add surfaces
@@ -489,26 +346,14 @@ Design.updateGeom = function(group, sliceManager) {
 	var srf_ft = verb.geom.NurbsSurface.byLoftingCurves( ft_crv, 2 );
 
 
+	var activeMat = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, color: 0xd32f2f } );
 
 	let backmesh = new THREE.Mesh( srf_bk.toThreeGeometry(), activeMat );
 	obj.add(new THREE.Mesh( srf_bs.toThreeGeometry(), activeMat ));
-	// backmesh.dontslice = true;
 	obj.add(backmesh);
 	obj.add(new THREE.Mesh( srf_tp.toThreeGeometry(), activeMat ));
 	obj.add(new THREE.Mesh( srf_st.toThreeGeometry(), activeMat ));
 	obj.add(new THREE.Mesh( srf_ft.toThreeGeometry(), activeMat ));
-
-	// obj.add(new THREE.Mesh( srf_bs.toThreeGeometry(), matMesh_wirewhite ));
-	// obj.add(new THREE.Mesh( srf_bk.toThreeGeometry(), matMesh_wirewhite ));
-	// obj.add(new THREE.Mesh( srf_tp.toThreeGeometry(), matMesh_wirewhite ));
-	// obj.add(new THREE.Mesh( srf_st.toThreeGeometry(), matMesh_wirewhite ));
-	// obj.add(new THREE.Mesh( srf_ft.toThreeGeometry(), matMesh_wirewhite ));
-
-	// getIsoCurves(srf_bs, 8).forEach(s => obj.add(new THREE.Line( s.toThreeGeometry(), matLine_white )));
-	// getIsoCurves(srf_bk, 8).forEach(s => obj.add(new THREE.Line( s.toThreeGeometry(), matLine_white )));
-	// getIsoCurves(srf_tp, 8).forEach(s => obj.add(new THREE.Line( s.toThreeGeometry(), matLine_white )));
-	// getIsoCurves(srf_st, 8).forEach(s => obj.add(new THREE.Line( s.toThreeGeometry(), matLine_white )));
-	// getIsoCurves(srf_ft, 8).forEach(s => obj.add(new THREE.Line( s.toThreeGeometry(), matLine_white )));
 
 
 
@@ -526,13 +371,13 @@ Design.updateGeom = function(group, sliceManager) {
 	for(let i=0; i<1; i+=0.05) { let p = o_ft_crv.point(i); side_shp.lineTo(p[1], p[2]); }
 	var sideA = new THREE.Mesh( new THREE.ShapeGeometry( side_shp ), activeMat );
 	sideA.rotation.set(Math.PI / 2, Math.PI / 2, 0);
-	sideA.position.x = i_bs_pts[0][0] * w_mul * w_outerMul;
+	sideA.position.x = i_bs_pts[0][0];
 	obj.add(sideA);
 
 
 	var sideB = new THREE.Mesh( new THREE.ShapeGeometry( side_shp ), activeMat );
 	sideB.rotation.set(Math.PI / 2, Math.PI / 2, 0);
-	sideB.position.x = -(i_bs_pts[0][0] * w_mul * w_outerMul);
+	sideB.position.x = -(i_bs_pts[0][0]);
 	obj.add(sideB);
 
 	sliceManager.addSliceSet({uDir: true, start: -400, end: 400, cuts: 7});
@@ -546,20 +391,5 @@ Design.updateGeom = function(group, sliceManager) {
 
 
 
-
-
-
-
-function getIsoCurves(srf, divs) {
-	var ret = [];
-	var l = 1/divs;
-	for (let i=0; i<1; i+=l) {
-		ret.push(srf.isocurve(i, true));
-	}
-	for (let i=0; i<1; i+=l) {
-		ret.push(srf.isocurve(i, false));
-	}
-	return ret;
-}
 
 
