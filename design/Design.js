@@ -70,7 +70,7 @@ Design.inputs = {
 		"type": "bool",
 		"tip": "",
 		"label": "Headrest",
-		"default": true
+		"default": false
 	},
 	"sidetable": {
 		"type": "bool",
@@ -161,6 +161,21 @@ function updatePts() {
 
 	// 
 	var doublebed = Design.inputState["double-bed"];
+	var doublebedWdAdd = (doublebed) ? 400 : 0;
+
+	o_bs_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
+	o_bk_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
+	o_tp_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
+	o_st_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
+	o_ft_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
+
+	o_bs_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
+	o_bk_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
+	o_tp_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
+	o_st_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
+	o_ft_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
+
+	doublebedSlicingOn = doublebed;
 
 
 
@@ -171,6 +186,18 @@ function updatePts() {
 	
 	// 
 	var wantsheadrest = Design.inputState["headrest"];
+	var headrestHtAdd = (wantsheadrest) ? 300 : 0;
+
+	m_bk_pts[2][1] += headrestHtAdd;
+	o_bk_pts[2][1] += headrestHtAdd;
+	o_bk_pts_mirr[2][1] += headrestHtAdd;
+
+	m_tp_pts[0][1] += headrestHtAdd;
+	m_tp_pts[1][1] += headrestHtAdd;
+	o_tp_pts[0][1] += headrestHtAdd;
+	o_tp_pts[1][1] += headrestHtAdd;
+	o_tp_pts_mirr[0][1] += headrestHtAdd;
+	o_tp_pts_mirr[1][1] += headrestHtAdd;
 
 
 
@@ -196,27 +223,31 @@ function updatePts() {
 
 
 
+var doublebedSlicingOn;
+
+
+
 // inner profile
 var m_bs_pts_start = 	  [		[0, 0, -2086],		[0, 0, 252], 		[0, 0, 805] 		];
-var m_bk_pts_start = 	  [		[0, 0, 805], 		[0, 400, 920], 		[0, 852, 916] 		];
-var m_tp_pts_start = 	  [		[0, 852, 916], 		[0, 920, 827], 		[0, 400, 600] 		];
+var m_bk_pts_start = 	  [		[0, 0, 805], 		[0, 200, 920], 		[0, 400, 916] 		];
+var m_tp_pts_start = 	  [		[0, 400, 916], 		[0, 450, 827], 		[0, 400, 600] 		];
 var m_st_pts_start = 	  [		[0, 400, 600], 		[0, 400, 466], 		[0, 400, -2086]		];
 var m_ft_pts_start = 	  [		[0, 400, -2086], 	[0, 456, -2136],	[0, 0, -2100]		];
 
 
 // outer profiles
-var o_bs_pts_start = 	  [		[270, 0, -2087],	[270, 0, 240],		[270, 0, 730]		];
-var o_bk_pts_start = 	  [		[270, 0, 730],		[270, 540, 860],	[270, 907, 840]		];
-var o_tp_pts_start = 	  [		[270, 907, 840],	[270, 965, 770],	[270, 400, 600]		];
-var o_st_pts_start = 	  [		[270, 400, 600],	[270, 400, 430],	[270, 400, -2087]	];
-var o_ft_pts_start = 	  [		[270, 400, -2087],	[270, 405, -2175],	[270, 0, -2100]		];
+var o_bs_pts_start = 	  [		[370, 0, -2087],	[370, 0, 240],		[370, 0, 730]		];
+var o_bk_pts_start = 	  [		[370, 0, 730],		[370, 220, 860],	[370, 420, 840]		];
+var o_tp_pts_start = 	  [		[370, 420, 840],	[370, 500, 770],	[370, 400, 600]		];
+var o_st_pts_start = 	  [		[370, 400, 600],	[370, 400, 430],	[370, 400, -2087]	];
+var o_ft_pts_start = 	  [		[370, 400, -2087],	[370, 405, -2175],	[370, 0, -2100]		];
 
 
-var o_bs_pts_mirr_start = [		[-270, 0, -2087],	[-270, 0, 240],		[-270, 0, 730]		];
-var o_bk_pts_mirr_start = [		[-270, 0, 730],		[-270, 540, 860],	[-270, 907, 840]	];
-var o_tp_pts_mirr_start = [		[-270, 907, 840],	[-270, 965, 770],	[-270, 400, 600]	];
-var o_st_pts_mirr_start = [		[-270, 400, 600],	[-270, 400, 430],	[-270, 400, -2087]	];
-var o_ft_pts_mirr_start = [		[-270, 400, -2087],	[-270, 405, -2175],	[-270, 0, -2100]	];
+var o_bs_pts_mirr_start = [		[-370, 0, -2087],	[-370, 0, 240],		[-370, 0, 730]		];
+var o_bk_pts_mirr_start = [		[-370, 0, 730],		[-370, 220, 860],	[-370, 420, 840]	];
+var o_tp_pts_mirr_start = [		[-370, 420, 840],	[-370, 500, 770],	[-370, 400, 600]	];
+var o_st_pts_mirr_start = [		[-370, 400, 600],	[-370, 400, 430],	[-370, 400, -2087]	];
+var o_ft_pts_mirr_start = [		[-370, 400, -2087],	[-370, 405, -2175],	[-370, 0, -2100]	];
 
 
 
@@ -378,8 +409,14 @@ Design.updateGeom = function(group, sliceManager) {
 	sideB.position.x = -(o_bs_pts[0][0]);
 	obj.add(sideB);
 
-	sliceManager.addSliceSet({uDir: true, start: -400, end: 400, cuts: 7});
-	sliceManager.addSliceSet({uDir: false, start: -50, end: 600, cuts: 6});
+	if(doublebedSlicingOn) {
+		sliceManager.addSliceSet({uDir: true, start: -800, end: 800, cuts: 14});
+		sliceManager.addSliceSet({uDir: false, start: -2500, end: 600, cuts: 20});
+	}
+	else {
+		sliceManager.addSliceSet({uDir: true, start: -400, end: 400, cuts: 7});
+		sliceManager.addSliceSet({uDir: false, start: -2500, end: 600, cuts: 20});
+	}
 
 	group.add(obj);
 }
