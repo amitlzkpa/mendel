@@ -124,23 +124,17 @@ function updatePts() {
 	var sc = getAgeMul(age);
 
 	// scale all points by value
-	i_bs_pts.forEach((d, i) => { d[0] = i_bs_pts_start[i][0] * sc; d[1] = i_bs_pts_start[i][1] * sc; d[2] = i_bs_pts_start[i][2] * sc; });
-	i_bk_pts.forEach((d, i) => { d[0] = i_bk_pts_start[i][0] * sc; d[1] = i_bk_pts_start[i][1] * sc; d[2] = i_bk_pts_start[i][2] * sc; });
-	i_tp_pts.forEach((d, i) => { d[0] = i_tp_pts_start[i][0] * sc; d[1] = i_tp_pts_start[i][1] * sc; d[2] = i_tp_pts_start[i][2] * sc; });
-	i_st_pts.forEach((d, i) => { d[0] = i_st_pts_start[i][0] * sc; d[1] = i_st_pts_start[i][1] * sc; d[2] = i_st_pts_start[i][2] * sc; });
-	i_ft_pts.forEach((d, i) => { d[0] = i_ft_pts_start[i][0] * sc; d[1] = i_ft_pts_start[i][1] * sc; d[2] = i_ft_pts_start[i][2] * sc; });
+	m_bs_pts.forEach((d, i) => { d[0] = m_bs_pts_start[i][0] * sc; d[1] = m_bs_pts_start[i][1] * sc; d[2] = m_bs_pts_start[i][2] * sc; });
+	m_bk_pts.forEach((d, i) => { d[0] = m_bk_pts_start[i][0] * sc; d[1] = m_bk_pts_start[i][1] * sc; d[2] = m_bk_pts_start[i][2] * sc; });
+	m_tp_pts.forEach((d, i) => { d[0] = m_tp_pts_start[i][0] * sc; d[1] = m_tp_pts_start[i][1] * sc; d[2] = m_tp_pts_start[i][2] * sc; });
+	m_st_pts.forEach((d, i) => { d[0] = m_st_pts_start[i][0] * sc; d[1] = m_st_pts_start[i][1] * sc; d[2] = m_st_pts_start[i][2] * sc; });
+	m_ft_pts.forEach((d, i) => { d[0] = m_ft_pts_start[i][0] * sc; d[1] = m_ft_pts_start[i][1] * sc; d[2] = m_ft_pts_start[i][2] * sc; });
 
 	o_bs_pts.forEach((d, i) => { d[0] = o_bs_pts_start[i][0] * sc; d[1] = o_bs_pts_start[i][1] * sc; d[2] = o_bs_pts_start[i][2] * sc; });
 	o_bk_pts.forEach((d, i) => { d[0] = o_bk_pts_start[i][0] * sc; d[1] = o_bk_pts_start[i][1] * sc; d[2] = o_bk_pts_start[i][2] * sc; });
 	o_tp_pts.forEach((d, i) => { d[0] = o_tp_pts_start[i][0] * sc; d[1] = o_tp_pts_start[i][1] * sc; d[2] = o_tp_pts_start[i][2] * sc; });
 	o_st_pts.forEach((d, i) => { d[0] = o_st_pts_start[i][0] * sc; d[1] = o_st_pts_start[i][1] * sc; d[2] = o_st_pts_start[i][2] * sc; });
 	o_ft_pts.forEach((d, i) => { d[0] = o_ft_pts_start[i][0] * sc; d[1] = o_ft_pts_start[i][1] * sc; d[2] = o_ft_pts_start[i][2] * sc; });
-
-	i_bs_pts_mirr.forEach((d, i) => { d[0] = i_bs_pts_mirr_start[i][0] * sc; d[1] = i_bs_pts_mirr_start[i][1] * sc; d[2] = i_bs_pts_mirr_start[i][2] * sc; });
-	i_bk_pts_mirr.forEach((d, i) => { d[0] = i_bk_pts_mirr_start[i][0] * sc; d[1] = i_bk_pts_mirr_start[i][1] * sc; d[2] = i_bk_pts_mirr_start[i][2] * sc; });
-	i_tp_pts_mirr.forEach((d, i) => { d[0] = i_tp_pts_mirr_start[i][0] * sc; d[1] = i_tp_pts_mirr_start[i][1] * sc; d[2] = i_tp_pts_mirr_start[i][2] * sc; });
-	i_st_pts_mirr.forEach((d, i) => { d[0] = i_st_pts_mirr_start[i][0] * sc; d[1] = i_st_pts_mirr_start[i][1] * sc; d[2] = i_st_pts_mirr_start[i][2] * sc; });
-	i_ft_pts_mirr.forEach((d, i) => { d[0] = i_ft_pts_mirr_start[i][0] * sc; d[1] = i_ft_pts_mirr_start[i][1] * sc; d[2] = i_ft_pts_mirr_start[i][2] * sc; });
 
 	o_bs_pts_mirr.forEach((d, i) => { d[0] = o_bs_pts_mirr_start[i][0] * sc; d[1] = o_bs_pts_mirr_start[i][1] * sc; d[2] = o_bs_pts_mirr_start[i][2] * sc; });
 	o_bk_pts_mirr.forEach((d, i) => { d[0] = o_bk_pts_mirr_start[i][0] * sc; d[1] = o_bk_pts_mirr_start[i][1] * sc; d[2] = o_bk_pts_mirr_start[i][2] * sc; });
@@ -150,7 +144,7 @@ function updatePts() {
 
 
 
-	
+
 	// --------------------------------------------
 
 
@@ -203,34 +197,26 @@ function updatePts() {
 
 
 // inner profile
-var i_bs_pts_start = [ 		[200, 0, -2086],	[200, 0, 252], 		[200, 0, 605] 		];
-var i_bk_pts_start = [ 		[200, 0, 605], 		[200, 400, 720], 	[200, 852, 716] 	];
-var i_tp_pts_start = [		[200, 852, 716], 	[200, 920, 627], 	[200, 520, 552] 	];
-var i_st_pts_start = [		[200, 520, 552], 	[200, 520, 366], 	[200, 520, -2086]	];
-var i_ft_pts_start = [		[200, 520, -2086], 	[200, 456, -2136],	[200, 0, -2100]		];
+var m_bs_pts_start = 	  [		[0, 0, -2086],		[0, 0, 252], 		[0, 0, 805] 		];
+var m_bk_pts_start = 	  [		[0, 0, 805], 		[0, 400, 920], 		[0, 852, 916] 		];
+var m_tp_pts_start = 	  [		[0, 852, 916], 		[0, 920, 827], 		[0, 400, 600] 		];
+var m_st_pts_start = 	  [		[0, 400, 600], 		[0, 400, 466], 		[0, 400, -2086]		];
+var m_ft_pts_start = 	  [		[0, 400, -2086], 	[0, 456, -2136],	[0, 0, -2100]		];
 
 
-// outer profile
-var o_bs_pts_start = [		[360, 0, -2087],	[360, 0, 240],		[360, 0, 530]		];
-var o_bk_pts_start = [		[360, 0, 530],		[360, 540, 660],	[360, 907, 640]		];
-var o_tp_pts_start = [		[360, 907, 640],	[360, 965, 570],	[360, 520, 510]		];
-var o_st_pts_start = [		[360, 520, 510],	[360, 520, 330],	[360, 520, -2087]	];
-var o_ft_pts_start = [		[360, 520, -2087],	[360, 405, -2175],	[360, 0, -2100]		];
+// outer profiles
+var o_bs_pts_start = 	  [		[270, 0, -2087],	[270, 0, 240],		[270, 0, 730]		];
+var o_bk_pts_start = 	  [		[270, 0, 730],		[270, 540, 860],	[270, 907, 840]		];
+var o_tp_pts_start = 	  [		[270, 907, 840],	[270, 965, 770],	[270, 400, 600]		];
+var o_st_pts_start = 	  [		[270, 400, 600],	[270, 400, 430],	[270, 400, -2087]	];
+var o_ft_pts_start = 	  [		[270, 400, -2087],	[270, 405, -2175],	[270, 0, -2100]		];
 
 
-
-var i_bs_pts_mirr_start = [ 	[-200, 0, -2086],	[-200, 0, 252], 	[-200, 0, 605] 		];
-var i_bk_pts_mirr_start = [ 	[-200, 0, 605], 	[-200, 400, 720], 	[-200, 852, 716] 	];
-var i_tp_pts_mirr_start = [		[-200, 852, 716], 	[-200, 920, 627], 	[-200, 520, 552] 	];
-var i_st_pts_mirr_start = [		[-200, 520, 552], 	[-200, 520, 366], 	[-200, 520, -2086]	];
-var i_ft_pts_mirr_start = [		[-200, 520, -2086], [-200, 456, -2136],	[-200, 0, -2100]	];
-
-
-var o_bs_pts_mirr_start = [		[-360, 0, -2087],	[-360, 0, 240],		[-360, 0, 530]		];
-var o_bk_pts_mirr_start = [		[-360, 0, 530],		[-360, 540, 660],	[-360, 907, 640]	];
-var o_tp_pts_mirr_start = [		[-360, 907, 640],	[-360, 965, 570],	[-360, 520, 510]	];
-var o_st_pts_mirr_start = [		[-360, 520, 510],	[-360, 520, 330],	[-360, 520, -2087]	];
-var o_ft_pts_mirr_start = [		[-360, 520, -2087],	[-360, 405, -2175],	[-360, 0, -2100]	];
+var o_bs_pts_mirr_start = [		[-270, 0, -2087],	[-270, 0, 240],		[-270, 0, 730]		];
+var o_bk_pts_mirr_start = [		[-270, 0, 730],		[-270, 540, 860],	[-270, 907, 840]	];
+var o_tp_pts_mirr_start = [		[-270, 907, 840],	[-270, 965, 770],	[-270, 400, 600]	];
+var o_st_pts_mirr_start = [		[-270, 400, 600],	[-270, 400, 430],	[-270, 400, -2087]	];
+var o_ft_pts_mirr_start = [		[-270, 400, -2087],	[-270, 405, -2175],	[-270, 0, -2100]	];
 
 
 
@@ -239,11 +225,11 @@ var o_ft_pts_mirr_start = [		[-360, 520, -2087],	[-360, 405, -2175],	[-360, 0, -
 
 
 // inner profile
-var i_bs_pts = JSON.parse(JSON.stringify(i_bs_pts_start));
-var i_bk_pts = JSON.parse(JSON.stringify(i_bk_pts_start));
-var i_tp_pts = JSON.parse(JSON.stringify(i_tp_pts_start));
-var i_st_pts = JSON.parse(JSON.stringify(i_st_pts_start));
-var i_ft_pts = JSON.parse(JSON.stringify(i_ft_pts_start));
+var m_bs_pts = JSON.parse(JSON.stringify(m_bs_pts_start));
+var m_bk_pts = JSON.parse(JSON.stringify(m_bk_pts_start));
+var m_tp_pts = JSON.parse(JSON.stringify(m_tp_pts_start));
+var m_st_pts = JSON.parse(JSON.stringify(m_st_pts_start));
+var m_ft_pts = JSON.parse(JSON.stringify(m_ft_pts_start));
 
 
 // outer profile
@@ -252,14 +238,6 @@ var o_bk_pts = JSON.parse(JSON.stringify(o_bk_pts_start));
 var o_tp_pts = JSON.parse(JSON.stringify(o_tp_pts_start));
 var o_st_pts = JSON.parse(JSON.stringify(o_st_pts_start));
 var o_ft_pts = JSON.parse(JSON.stringify(o_ft_pts_start));
-
-
-
-var i_bs_pts_mirr =JSON.parse(JSON.stringify(i_bs_pts_mirr_start));
-var i_bk_pts_mirr = JSON.parse(JSON.stringify(i_bk_pts_mirr_start));
-var i_tp_pts_mirr = JSON.parse(JSON.stringify(i_tp_pts_mirr_start));
-var i_st_pts_mirr = JSON.parse(JSON.stringify(i_st_pts_mirr_start));
-var i_ft_pts_mirr = JSON.parse(JSON.stringify(i_ft_pts_mirr_start));
 
 
 var o_bs_pts_mirr = JSON.parse(JSON.stringify(o_bs_pts_mirr_start));
@@ -303,23 +281,17 @@ Design.updateGeom = function(group, sliceManager) {
 
 
 	// add curves
-	var i_bs = verb.geom.NurbsCurve.byPoints( i_bs_pts, 2 );
-	var i_bk = verb.geom.NurbsCurve.byPoints( i_bk_pts, 2 );
-	var i_tp = verb.geom.NurbsCurve.byPoints( i_tp_pts, 2 );
-	var i_st = verb.geom.NurbsCurve.byPoints( i_st_pts, 2 );
-	var i_ft = verb.geom.NurbsCurve.byPoints( i_ft_pts, 2 );
+	var m_bs = verb.geom.NurbsCurve.byPoints( m_bs_pts, 2 );
+	var m_bk = verb.geom.NurbsCurve.byPoints( m_bk_pts, 2 );
+	var m_tp = verb.geom.NurbsCurve.byPoints( m_tp_pts, 2 );
+	var m_st = verb.geom.NurbsCurve.byPoints( m_st_pts, 2 );
+	var m_ft = verb.geom.NurbsCurve.byPoints( m_ft_pts, 2 );
 
 	var o_bs = verb.geom.NurbsCurve.byPoints( o_bs_pts, 2 );
 	var o_bk = verb.geom.NurbsCurve.byPoints( o_bk_pts, 2 );
 	var o_tp = verb.geom.NurbsCurve.byPoints( o_tp_pts, 2 );
 	var o_st = verb.geom.NurbsCurve.byPoints( o_st_pts, 2 );
 	var o_ft = verb.geom.NurbsCurve.byPoints( o_ft_pts, 2 );
-
-	var i_bs_mirr = verb.geom.NurbsCurve.byPoints( i_bs_pts_mirr, 2 );
-	var i_bk_mirr = verb.geom.NurbsCurve.byPoints( i_bk_pts_mirr, 2 );
-	var i_tp_mirr = verb.geom.NurbsCurve.byPoints( i_tp_pts_mirr, 2 );
-	var i_st_mirr = verb.geom.NurbsCurve.byPoints( i_st_pts_mirr, 2 );
-	var i_ft_mirr = verb.geom.NurbsCurve.byPoints( i_ft_pts_mirr, 2 );
 
 	var o_bs_mirr = verb.geom.NurbsCurve.byPoints( o_bs_pts_mirr, 2 );
 	var o_bk_mirr = verb.geom.NurbsCurve.byPoints( o_bk_pts_mirr, 2 );
@@ -338,40 +310,35 @@ Design.updateGeom = function(group, sliceManager) {
 
 	bs_crv = 	[
 					verb.geom.NurbsCurve.byPoints( o_bs_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( i_bs_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( i_bs_pts_mirr, 2 ),
+					verb.geom.NurbsCurve.byPoints( m_bs_pts, 2 ),
 					verb.geom.NurbsCurve.byPoints( o_bs_pts_mirr, 2 )
 				];
 	var srf_bs = verb.geom.NurbsSurface.byLoftingCurves( bs_crv, 2 );
 
 	bk_crv = 	[
 					o_bk_crv,
-					verb.geom.NurbsCurve.byPoints( i_bk_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( i_bk_pts_mirr, 2 ),
+					verb.geom.NurbsCurve.byPoints( m_bk_pts, 2 ),
 					verb.geom.NurbsCurve.byPoints( o_bk_pts_mirr, 2 )
 				];
 	var srf_bk = verb.geom.NurbsSurface.byLoftingCurves( bk_crv, 2 );
 
 	tp_crv = 	[
 					o_tp_crv,
-					verb.geom.NurbsCurve.byPoints( i_tp_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( i_tp_pts_mirr, 2 ),
+					verb.geom.NurbsCurve.byPoints( m_tp_pts, 2 ),
 					verb.geom.NurbsCurve.byPoints( o_tp_pts_mirr, 2 )
 				];
 	var srf_tp = verb.geom.NurbsSurface.byLoftingCurves( tp_crv, 2 );
 
 	st_crv = 	[
 					o_st_crv,
-					verb.geom.NurbsCurve.byPoints( i_st_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( i_st_pts_mirr, 2 ),
+					verb.geom.NurbsCurve.byPoints( m_st_pts, 2 ),
 					verb.geom.NurbsCurve.byPoints( o_st_pts_mirr, 2 )
 				];
 	var srf_st = verb.geom.NurbsSurface.byLoftingCurves( st_crv, 2 );
 
 	ft_crv = 	[
 					o_ft_crv,
-					verb.geom.NurbsCurve.byPoints( i_ft_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( i_ft_pts_mirr, 2 ),
+					verb.geom.NurbsCurve.byPoints( m_ft_pts, 2 ),
 					verb.geom.NurbsCurve.byPoints( o_ft_pts_mirr, 2 )
 				];
 	var srf_ft = verb.geom.NurbsSurface.byLoftingCurves( ft_crv, 2 );
@@ -402,13 +369,13 @@ Design.updateGeom = function(group, sliceManager) {
 	for(let i=0; i<1; i+=0.05) { let p = o_ft_crv.point(i); side_shp.lineTo(p[1], p[2]); }
 	var sideA = new THREE.Mesh( new THREE.ShapeGeometry( side_shp ), activeMat );
 	sideA.rotation.set(Math.PI / 2, Math.PI / 2, 0);
-	sideA.position.x = i_bs_pts[0][0];
+	sideA.position.x = o_bs_pts[0][0];
 	obj.add(sideA);
 
 
 	var sideB = new THREE.Mesh( new THREE.ShapeGeometry( side_shp ), activeMat );
 	sideB.rotation.set(Math.PI / 2, Math.PI / 2, 0);
-	sideB.position.x = -(i_bs_pts[0][0]);
+	sideB.position.x = -(o_bs_pts[0][0]);
 	obj.add(sideB);
 
 	sliceManager.addSliceSet({uDir: true, start: -400, end: 400, cuts: 7});
