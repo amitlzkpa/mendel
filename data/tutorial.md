@@ -4,15 +4,15 @@ This will help us determine the parts of the design which are dyanmic and are de
 
 Single/Double bed
 Age
-Weight
 Headrest
 Sidetable
+Sleep Style
 
 Geometrically a bed is essentially a box which is approximately the size of a human body. The top surface is raised above the ground to a height convenient to sit on.  
-For an adult male: 
-- The shoulder to shoulder width for an adult is 495mm. We shall consider about 30% more than this to allow for a convenient width.
-- The height is close to 1905mm. Again we shall account for 10% extra.
-- We see the knee is 400mm off the ground. We consider the knee height as it will allow someone to sit on the bed and still have the feet on ground.
+For an adult male:  
+- The shoulder to shoulder width for an adult is 495mm. We shall consider about 30% more than this to allow for a convenient width (540 mm).  
+- The height is close to 1905mm. Again we shall account for 10% extra (2100 mm).  
+- We see the knee is 400mm off the ground. We consider the knee height as it will allow someone to sit on the bed and still have the feet on ground.  
 
 As said above we considered a male human adult body for the measurements. Similarly we can find measurements for people of different ages and gender.  
 Refer [this]().  
