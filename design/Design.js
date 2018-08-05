@@ -77,6 +77,12 @@ Design.inputs = {
 		"tip": "",
 		"label": "Sidetable",
 		"default": false
+	},
+	"genome-id": {
+		"type": "text",
+		"tip": "Enter your Genome ID to customise the design with information from your genetic information.",
+		"label": "Genome ID",
+		"default": "dolly"
 	}
 }
 
