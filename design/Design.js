@@ -60,12 +60,6 @@ Design.inputs = {
 		"default": "tight",
 		"choices": [ "tight", "comfy", "luxurious" ]
 	},
-	"double-bed": {
-		"type": "bool",
-		"tip": "",
-		"label": "DoubleBed",
-		"default": false
-	},
 	"headrest": {
 		"type": "bool",
 		"tip": "",
@@ -165,23 +159,8 @@ function updatePts() {
 
 
 
-	// 
-	var doublebed = Design.inputState["double-bed"];
-	var doublebedWdAdd = (doublebed) ? 400 : 0;
 
-	o_bs_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
-	o_bk_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
-	o_tp_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
-	o_st_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
-	o_ft_pts.forEach((d, i) => { d[0] += doublebedWdAdd; });
 
-	o_bs_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
-	o_bk_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
-	o_tp_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
-	o_st_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
-	o_ft_pts_mirr.forEach((d, i) => { d[0] -= doublebedWdAdd; });
-
-	doublebedSlicingOn = doublebed;
 
 
 
