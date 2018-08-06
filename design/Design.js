@@ -112,39 +112,68 @@ function getAgeMul(age) {
 
 function updatePts() {
 
-	// age alterations - scale the whole design by a factor depending on age
-	var age = Design.inputState.age;
-	// scale factor is non-linear and follows a quadratic curve
-	var sc = getAgeMul(age);
 
-	// scale all points by value
-	m_bs_pts.forEach((d, i) => { d[0] = m_bs_pts_start[i][0] * sc; d[1] = m_bs_pts_start[i][1] * sc; d[2] = m_bs_pts_start[i][2] * sc; });
-	m_bk_pts.forEach((d, i) => { d[0] = m_bk_pts_start[i][0] * sc; d[1] = m_bk_pts_start[i][1] * sc; d[2] = m_bk_pts_start[i][2] * sc; });
-	m_tp_pts.forEach((d, i) => { d[0] = m_tp_pts_start[i][0] * sc; d[1] = m_tp_pts_start[i][1] * sc; d[2] = m_tp_pts_start[i][2] * sc; });
-	m_st_pts.forEach((d, i) => { d[0] = m_st_pts_start[i][0] * sc; d[1] = m_st_pts_start[i][1] * sc; d[2] = m_st_pts_start[i][2] * sc; });
-	m_ft_pts.forEach((d, i) => { d[0] = m_ft_pts_start[i][0] * sc; d[1] = m_ft_pts_start[i][1] * sc; d[2] = m_ft_pts_start[i][2] * sc; });
 
-	o_bs_pts.forEach((d, i) => { d[0] = o_bs_pts_start[i][0] * sc; d[1] = o_bs_pts_start[i][1] * sc; d[2] = o_bs_pts_start[i][2] * sc; });
-	o_bk_pts.forEach((d, i) => { d[0] = o_bk_pts_start[i][0] * sc; d[1] = o_bk_pts_start[i][1] * sc; d[2] = o_bk_pts_start[i][2] * sc; });
-	o_tp_pts.forEach((d, i) => { d[0] = o_tp_pts_start[i][0] * sc; d[1] = o_tp_pts_start[i][1] * sc; d[2] = o_tp_pts_start[i][2] * sc; });
-	o_st_pts.forEach((d, i) => { d[0] = o_st_pts_start[i][0] * sc; d[1] = o_st_pts_start[i][1] * sc; d[2] = o_st_pts_start[i][2] * sc; });
-	o_ft_pts.forEach((d, i) => { d[0] = o_ft_pts_start[i][0] * sc; d[1] = o_ft_pts_start[i][1] * sc; d[2] = o_ft_pts_start[i][2] * sc; });
 
-	o_bs_pts_mirr.forEach((d, i) => { d[0] = o_bs_pts_mirr_start[i][0] * sc; d[1] = o_bs_pts_mirr_start[i][1] * sc; d[2] = o_bs_pts_mirr_start[i][2] * sc; });
-	o_bk_pts_mirr.forEach((d, i) => { d[0] = o_bk_pts_mirr_start[i][0] * sc; d[1] = o_bk_pts_mirr_start[i][1] * sc; d[2] = o_bk_pts_mirr_start[i][2] * sc; });
-	o_tp_pts_mirr.forEach((d, i) => { d[0] = o_tp_pts_mirr_start[i][0] * sc; d[1] = o_tp_pts_mirr_start[i][1] * sc; d[2] = o_tp_pts_mirr_start[i][2] * sc; });
-	o_st_pts_mirr.forEach((d, i) => { d[0] = o_st_pts_mirr_start[i][0] * sc; d[1] = o_st_pts_mirr_start[i][1] * sc; d[2] = o_st_pts_mirr_start[i][2] * sc; });
-	o_ft_pts_mirr.forEach((d, i) => { d[0] = o_ft_pts_mirr_start[i][0] * sc; d[1] = o_ft_pts_mirr_start[i][1] * sc; d[2] = o_ft_pts_mirr_start[i][2] * sc; });
+    // --------------------------------------------
 
 
 
 
-	// --------------------------------------------
+    // age alterations - scale the whole design by a factor depending on age
+    var age = Design.inputState.age;
+    // scale factor is non-linear and follows a quadratic curve
+    var sc = getAgeMul(age);
+
+    // scale all points by value
+    m_bs_pts.forEach((d, i) => { d[0] = m_bs_pts_start[i][0] * sc; d[1] = m_bs_pts_start[i][1] * sc; d[2] = m_bs_pts_start[i][2] * sc; });
+    m_bk_pts.forEach((d, i) => { d[0] = m_bk_pts_start[i][0] * sc; d[1] = m_bk_pts_start[i][1] * sc; d[2] = m_bk_pts_start[i][2] * sc; });
+    m_tp_pts.forEach((d, i) => { d[0] = m_tp_pts_start[i][0] * sc; d[1] = m_tp_pts_start[i][1] * sc; d[2] = m_tp_pts_start[i][2] * sc; });
+    m_st_pts.forEach((d, i) => { d[0] = m_st_pts_start[i][0] * sc; d[1] = m_st_pts_start[i][1] * sc; d[2] = m_st_pts_start[i][2] * sc; });
+    m_ft_pts.forEach((d, i) => { d[0] = m_ft_pts_start[i][0] * sc; d[1] = m_ft_pts_start[i][1] * sc; d[2] = m_ft_pts_start[i][2] * sc; });
+
+    o_bs_pts.forEach((d, i) => { d[0] = o_bs_pts_start[i][0] * sc; d[1] = o_bs_pts_start[i][1] * sc; d[2] = o_bs_pts_start[i][2] * sc; });
+    o_bk_pts.forEach((d, i) => { d[0] = o_bk_pts_start[i][0] * sc; d[1] = o_bk_pts_start[i][1] * sc; d[2] = o_bk_pts_start[i][2] * sc; });
+    o_tp_pts.forEach((d, i) => { d[0] = o_tp_pts_start[i][0] * sc; d[1] = o_tp_pts_start[i][1] * sc; d[2] = o_tp_pts_start[i][2] * sc; });
+    o_st_pts.forEach((d, i) => { d[0] = o_st_pts_start[i][0] * sc; d[1] = o_st_pts_start[i][1] * sc; d[2] = o_st_pts_start[i][2] * sc; });
+    o_ft_pts.forEach((d, i) => { d[0] = o_ft_pts_start[i][0] * sc; d[1] = o_ft_pts_start[i][1] * sc; d[2] = o_ft_pts_start[i][2] * sc; });
+
+    o_bs_pts_mirr.forEach((d, i) => { d[0] = o_bs_pts_mirr_start[i][0] * sc; d[1] = o_bs_pts_mirr_start[i][1] * sc; d[2] = o_bs_pts_mirr_start[i][2] * sc; });
+    o_bk_pts_mirr.forEach((d, i) => { d[0] = o_bk_pts_mirr_start[i][0] * sc; d[1] = o_bk_pts_mirr_start[i][1] * sc; d[2] = o_bk_pts_mirr_start[i][2] * sc; });
+    o_tp_pts_mirr.forEach((d, i) => { d[0] = o_tp_pts_mirr_start[i][0] * sc; d[1] = o_tp_pts_mirr_start[i][1] * sc; d[2] = o_tp_pts_mirr_start[i][2] * sc; });
+    o_st_pts_mirr.forEach((d, i) => { d[0] = o_st_pts_mirr_start[i][0] * sc; d[1] = o_st_pts_mirr_start[i][1] * sc; d[2] = o_st_pts_mirr_start[i][2] * sc; });
+    o_ft_pts_mirr.forEach((d, i) => { d[0] = o_ft_pts_mirr_start[i][0] * sc; d[1] = o_ft_pts_mirr_start[i][1] * sc; d[2] = o_ft_pts_mirr_start[i][2] * sc; });
 
 
 
-	// 
-	var sleepstyle = Design.inputState["sleep-style"];
+
+    // --------------------------------------------
+
+
+
+    // 
+    var sleepstyle = Design.inputState["sleep-style"];
+
+    // 75(3")
+    // 121.35
+    // 196.35
+
+    // (75 + 46.35) / 75 = 1.618
+    // (121.35 + 75) / 121.35 = 1.618
+    let sleepStyleWidthAdd = (sleepstyle == "tight") ? 75 : (sleepstyle == "comfy") ? 121.35 : 196.35;
+
+
+    o_bs_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
+    o_bk_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
+    o_tp_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
+    o_st_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
+    o_ft_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
+
+    o_bs_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
+    o_bk_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
+    o_tp_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
+    o_st_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
+    o_ft_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
 
 
 
