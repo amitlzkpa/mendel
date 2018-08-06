@@ -78,6 +78,12 @@ Design.inputs = {
 //-----------------------------------------------------------------------------
 
 
+var genomeData = null;
+
+
+//-----------------------------------------------------------------------------
+
+
 /**
  * Object to contain the parameter values.
  * Values are updated in this object as changes are made in the UI.
@@ -105,6 +111,265 @@ function map_range(value, low1, high1, low2, high2, interp="lin") {
 // 12 -> 0.6	|	30 -> 0.9	|	50 -> 1		|	60 -> 0.95
 function getAgeMul(age) {
 	return (-0.000315247 * (Math.pow(age, 2))) + (0.0300255 * age) + 0.284562
+}
+
+
+
+function getGenomeData() {
+    let genome1 =   `
+                    {
+                      "caffeine-consumption": {
+                        "phenotype": {
+                          "url_name": "caffeine-consumption",
+                          "display_name": "Caffeine consumption",
+                          "category": "food_and_nutrition"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Less cup of coffee"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Slightly less cup of coffee"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slightly more cup of coffee"
+                          },
+                          {
+                            "score": 4,
+                            "text": "More cup of coffee"
+                          }
+                        ],
+                        "summary": {
+                          "score": 2,
+                          "text": "Intermediate",
+                          "warnings": []
+                        }
+                      },
+                      "excessive-daytime-sleepiness": {
+                        "phenotype": {
+                          "url_name": "excessive-daytime-sleepiness",
+                          "display_name": "Excessive daytime sleepiness",
+                          "category": "trait"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Tend not to get daytime sleepiness"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Tend not to get daytime sleepiness, slightly"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slight tendency to get daytime sleepiness"
+                          },
+                          {
+                            "score": 4,
+                            "text": "Stronger tendency to get daytime sleepiness"
+                          }
+                        ],
+                        "summary": {
+                          "score": 2,
+                          "text": "Intermediate",
+                          "warnings": [
+                            "reliability is low"
+                          ]
+                        }
+                      },
+                      "body-fat-mass": {
+                        "phenotype": {
+                          "url_name": "body-fat-mass",
+                          "display_name": "Body fat mass",
+                          "category": "trait"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Lower"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Slightly lower"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slightly higher"
+                          },
+                          {
+                            "score": 4,
+                            "text": "Higher"
+                          }
+                        ],
+                        "summary": {
+                          "score": 2,
+                          "text": "Intermediate",
+                          "warnings": []
+                        }
+                      },
+                      "body-fat-percentage": {
+                        "phenotype": {
+                          "url_name": "body-fat-percentage",
+                          "display_name": "Body fat percentage",
+                          "category": "trait"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Lower fat percentage"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Slightly lower fat percentage"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slightly higher fat percentage"
+                          },
+                          {
+                            "score": 4,
+                            "text": "Higher fat percentage"
+                          }
+                        ],
+                        "summary": {
+                          "score": 2,
+                          "text": "Intermediate",
+                          "warnings": []
+                        }
+                      },
+                      "bmi": {
+                        "phenotype": {
+                          "url_name": "bmi",
+                          "display_name": "BMI",
+                          "category": "trait"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Lower"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Slightly lower"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slightly higher"
+                          },
+                          {
+                            "score": 4,
+                            "text": "Higher"
+                          }
+                        ],
+                        "summary": {
+                          "score": 3,
+                          "text": "Slightly higher",
+                          "warnings": []
+                        }
+                      },
+                      "weight": {
+                        "phenotype": {
+                          "url_name": "weight",
+                          "display_name": "Genetic weight",
+                          "category": "trait"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Tend not to have heavy weight"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Tend not to have heavy weight, slightly"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slight tendency to have heavy weight"
+                          },
+                          {
+                            "score": 4,
+                            "text": "Stronger tendency to have heavy weight"
+                          }
+                        ],
+                        "summary": {
+                          "score": 1,
+                          "text": "Tend not to have heavy weight, slightly",
+                          "warnings": [
+                            "reliability is low"
+                          ]
+                        }
+                      },
+                      "height": {
+                        "phenotype": {
+                          "url_name": "height",
+                          "display_name": "Height",
+                          "category": "trait"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Shorter"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Slightly shorter"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slightly taller"
+                          },
+                          {
+                            "score": 4,
+                            "text": "Taller"
+                          }
+                        ],
+                        "summary": {
+                          "score": 1,
+                          "text": "Slightly shorter",
+                          "warnings": []
+                        }
+                      }
+                    }
+                    `;
+    return genome1;
 }
 
 
@@ -198,15 +463,6 @@ function updatePts() {
     o_ft_pts_mirr[0][1] -= sleepStyleHeightSub;
 
 
-	
-	// --------------------------------------------
-
-
-
-
-
-
-
 
 	
 	// --------------------------------------------
@@ -227,6 +483,16 @@ function updatePts() {
 	o_tp_pts[1][1] += headrestHtAdd;
 	o_tp_pts_mirr[0][1] += headrestHtAdd;
 	o_tp_pts_mirr[1][1] += headrestHtAdd;
+
+
+    
+    // --------------------------------------------
+
+
+
+
+    genomeData = JSON.parse(getGenomeData());
+    console.log(genomeData);
 
 
 
@@ -320,15 +586,7 @@ Design.init = function() {
  */
 Design.onParamChange = function(params) {
 	this.inputState = params;
-    let s = $.get('https://gitcdn.xyz/repo/amitlzkpa/hobbes_bed/master/data/GENOMELINKTEST001.json');
-    s.then(data => {
-        console.log(data);
-        updatePts();
-    });
-    s.catch(e => {
-        console.log(e);
-
-    });
+    updatePts();
 }
 
 /**
