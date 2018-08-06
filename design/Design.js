@@ -176,6 +176,27 @@ function updatePts() {
     o_ft_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
 
 
+    let sleepStyleHeightSub = (sleepstyle == "tight") ? 25 : (sleepstyle == "comfy") ? 50 : 75;
+    m_tp_pts[2][1] -= sleepStyleHeightSub;
+    o_tp_pts[2][1] -= sleepStyleHeightSub;
+    o_tp_pts_mirr[2][1] -= sleepStyleHeightSub;
+
+    m_st_pts[0][1] -= sleepStyleHeightSub;
+    m_st_pts[1][1] -= sleepStyleHeightSub;
+    m_st_pts[2][1] -= sleepStyleHeightSub;
+    
+    o_st_pts[0][1] -= sleepStyleHeightSub;
+    o_st_pts[1][1] -= sleepStyleHeightSub;
+    o_st_pts[2][1] -= sleepStyleHeightSub;
+
+    o_st_pts_mirr[0][1] -= sleepStyleHeightSub;
+    o_st_pts_mirr[1][1] -= sleepStyleHeightSub;
+    o_st_pts_mirr[2][1] -= sleepStyleHeightSub;
+
+    m_ft_pts[0][1] -= sleepStyleHeightSub;
+    o_ft_pts[0][1] -= sleepStyleHeightSub;
+    o_ft_pts_mirr[0][1] -= sleepStyleHeightSub;
+
 
 	
 	// --------------------------------------------
