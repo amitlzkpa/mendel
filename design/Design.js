@@ -299,7 +299,15 @@ Design.init = function() {
  */
 Design.onParamChange = function(params) {
 	this.inputState = params;
-	updatePts();
+    let s = $.get('https://gitcdn.xyz/repo/amitlzkpa/hobbes_bed/master/data/GENOMELINKTEST001.json');
+    s.then(data => {
+        console.log(data);
+        updatePts();
+    });
+    s.catch(e => {
+        console.log(e);
+
+    });
 }
 
 /**
