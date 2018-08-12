@@ -12,11 +12,11 @@ var Design = {};
  * Meta information about the design
  */
 Design.info = {
-	"name": "Hobbes",
+	"name": "Mendel",
 	"designer": "Amit Nambiar",
 	"version": "1.0.0",
 	"license": "MIT",
-	"short_desc": "A simple bed for common use.",
+	"short_desc": "Chair with a personality.",
 	"long_desc": "",
 	"url": null,
 	"message": "",
@@ -53,19 +53,14 @@ Design.inputs = {
 		"min": 6,
 		"max": 80
 	},
-	"sleep-style": { 
-		"type": "select",
-		"label": "Sleep Style",
-		"tip": "Are you a tight sleeper or do you like to spread yourself?",
-		"default": "tight",
-		"choices": [ "tight", "comfy", "luxurious" ]
-	},
-	"headrest": {
-		"type": "bool",
-		"tip": "",
-		"label": "Headrest",
-		"default": false
-	},
+  "comfort": { 
+    "type": "slider",
+    "label": "Comfort",
+    "tip": "Is it for use in a relaxed environment?",
+    "default": 4,
+    "min": 0,
+    "max": 10
+  },
 	"genome-id": {
 		"type": "text",
 		"tip": "Enter your Genome ID to customise the design with information from your genetic information.",
@@ -409,80 +404,6 @@ function updatePts() {
     o_st_pts_mirr.forEach((d, i) => { d[0] = o_st_pts_mirr_start[i][0] * sc; d[1] = o_st_pts_mirr_start[i][1] * sc; d[2] = o_st_pts_mirr_start[i][2] * sc; });
     o_ft_pts_mirr.forEach((d, i) => { d[0] = o_ft_pts_mirr_start[i][0] * sc; d[1] = o_ft_pts_mirr_start[i][1] * sc; d[2] = o_ft_pts_mirr_start[i][2] * sc; });
 
-
-
-
-    // --------------------------------------------
-
-
-
-    // 
-    var sleepstyle = Design.inputState["sleep-style"];
-
-    // 75(3")
-    // 121.35
-    // 196.35
-
-    // (75 + 46.35) / 75 = 1.618
-    // (121.35 + 75) / 121.35 = 1.618
-    let sleepStyleWidthAdd = (sleepstyle == "tight") ? 75 : (sleepstyle == "comfy") ? 121.35 : 196.35;
-
-
-    o_bs_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
-    o_bk_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
-    o_tp_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
-    o_st_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
-    o_ft_pts.forEach((d, i) => { d[0] += sleepStyleWidthAdd; });
-
-    o_bs_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
-    o_bk_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
-    o_tp_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
-    o_st_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
-    o_ft_pts_mirr.forEach((d, i) => { d[0] -= sleepStyleWidthAdd; });
-
-
-    let sleepStyleHeightSub = (sleepstyle == "tight") ? 25 : (sleepstyle == "comfy") ? 50 : 75;
-    m_tp_pts[2][1] -= sleepStyleHeightSub;
-    o_tp_pts[2][1] -= sleepStyleHeightSub;
-    o_tp_pts_mirr[2][1] -= sleepStyleHeightSub;
-
-    m_st_pts[0][1] -= sleepStyleHeightSub;
-    m_st_pts[1][1] -= sleepStyleHeightSub;
-    m_st_pts[2][1] -= sleepStyleHeightSub;
-    
-    o_st_pts[0][1] -= sleepStyleHeightSub;
-    o_st_pts[1][1] -= sleepStyleHeightSub;
-    o_st_pts[2][1] -= sleepStyleHeightSub;
-
-    o_st_pts_mirr[0][1] -= sleepStyleHeightSub;
-    o_st_pts_mirr[1][1] -= sleepStyleHeightSub;
-    o_st_pts_mirr[2][1] -= sleepStyleHeightSub;
-
-    m_ft_pts[0][1] -= sleepStyleHeightSub;
-    o_ft_pts[0][1] -= sleepStyleHeightSub;
-    o_ft_pts_mirr[0][1] -= sleepStyleHeightSub;
-
-
-
-	
-	// --------------------------------------------
-
-
-	
-	// 
-	var wantsheadrest = Design.inputState["headrest"];
-	var headrestHtAdd = (wantsheadrest) ? 300 : 0;
-
-	m_bk_pts[2][1] += headrestHtAdd;
-	o_bk_pts[2][1] += headrestHtAdd;
-	o_bk_pts_mirr[2][1] += headrestHtAdd;
-
-	m_tp_pts[0][1] += headrestHtAdd;
-	m_tp_pts[1][1] += headrestHtAdd;
-	o_tp_pts[0][1] += headrestHtAdd;
-	o_tp_pts[1][1] += headrestHtAdd;
-	o_tp_pts_mirr[0][1] += headrestHtAdd;
-	o_tp_pts_mirr[1][1] += headrestHtAdd;
 
 
     

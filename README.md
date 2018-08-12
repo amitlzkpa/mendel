@@ -2,6 +2,6 @@
 ###### Code and design for [O-LAP](https://o-lap.com)  
 ---
 ![image alt-text](image-url)
-# Name  
-###### Short description.  
+# Mendel  
+###### Chair with a personality.  
 ---
