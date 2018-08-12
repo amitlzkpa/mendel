@@ -379,6 +379,22 @@ function updatePts() {
 
 
 
+    
+    // --------------------------------------------
+
+
+
+
+    genomeData = JSON.parse(getGenomeData());
+    console.log(genomeData);
+
+
+
+  
+  // --------------------------------------------
+
+
+
 
     // age alterations - scale the whole design by a factor depending on age
     var age = Design.inputState.age;
@@ -405,26 +421,6 @@ function updatePts() {
     o_ft_pts_mirr.forEach((d, i) => { d[0] = o_ft_pts_mirr_start[i][0] * sc; d[1] = o_ft_pts_mirr_start[i][1] * sc; d[2] = o_ft_pts_mirr_start[i][2] * sc; });
 
 
-
-    
-    // --------------------------------------------
-
-
-
-
-    genomeData = JSON.parse(getGenomeData());
-    console.log(genomeData);
-
-
-
-	
-	// --------------------------------------------
-
-
-	
-
-
-
 	
 	// --------------------------------------------
 
@@ -437,31 +433,59 @@ function updatePts() {
 
 
 
+// // inner profile
+// var m_bs_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var m_bk_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var m_tp_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var m_st_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var m_ft_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+
+
+// // outer profiles
+// var o_bs_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var o_bk_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var o_tp_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var o_st_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+// var o_ft_pts_delta =    [   [0, 0, 0],    [0, 0, 0],    [0, 0, 0]     ];
+
+
+// var o_bs_pts_mirr_delta = [   [0, 0, 0],  [0, 0, 0],    [0, 0, 0]     ];
+// var o_bk_pts_mirr_delta = [   [0, 0, 0],  [0, 0, 0],    [0, 0, 0]     ];
+// var o_tp_pts_mirr_delta = [   [0, 0, 0],  [0, 0, 0],    [0, 0, 0]     ];
+// var o_st_pts_mirr_delta = [   [0, 0, 0],  [0, 0, 0],    [0, 0, 0]     ];
+// var o_ft_pts_mirr_delta = [   [0, 0, 0],  [0, 0, 0],    [0, 0, 0]     ];
+
+
+
+//-----------------------------------------------------------
+
+
+
 var doublebedSlicingOn;
 
 
 
 // inner profile
-var m_bs_pts_start = 	  [		[0, 0, -2086],		[0, 0, 252], 		[0, 0, 805] 		];
-var m_bk_pts_start = 	  [		[0, 0, 805], 		[0, 200, 920], 		[0, 400, 916] 		];
-var m_tp_pts_start = 	  [		[0, 400, 916], 		[0, 450, 827], 		[0, 400, 600] 		];
-var m_st_pts_start = 	  [		[0, 400, 600], 		[0, 400, 466], 		[0, 400, -2086]		];
-var m_ft_pts_start = 	  [		[0, 400, -2086], 	[0, 456, -2136],	[0, 0, -2100]		];
+var m_bs_pts_start = [    [200, 0, 0],      [200, 0, 252],    [200, 0, 605]     ];
+var m_bk_pts_start = [    [200, 0, 605],    [200, 400, 720],  [200, 852, 716]   ];
+var m_tp_pts_start = [    [200, 852, 716],  [200, 920, 627],  [200, 860, 552]   ];
+var m_st_pts_start = [    [200, 860, 552],  [200, 485, 366],  [200, 496, 14]    ];
+var m_ft_pts_start = [    [200, 496, 14],   [200, 456, -63],  [200, 0, 0]       ];
 
 
 // outer profiles
-var o_bs_pts_start = 	  [		[370, 0, -2087],	[370, 0, 240],		[370, 0, 730]		];
-var o_bk_pts_start = 	  [		[370, 0, 730],		[370, 220, 860],	[370, 420, 840]		];
-var o_tp_pts_start = 	  [		[370, 420, 840],	[370, 500, 770],	[370, 400, 600]		];
-var o_st_pts_start = 	  [		[370, 400, 600],	[370, 400, 430],	[370, 400, -2087]	];
-var o_ft_pts_start = 	  [		[370, 400, -2087],	[370, 405, -2175],	[370, 0, -2100]		];
+var o_bs_pts_start = [    [360, 0, 0],      [360, 0, 240],    [360, 0, 530]     ];
+var o_bk_pts_start = [    [360, 0, 530],    [360, 540, 660],  [360, 907, 640]   ];
+var o_tp_pts_start = [    [360, 907, 640],  [360, 965, 570],  [360, 907, 510]   ];
+var o_st_pts_start = [    [360, 907, 510],  [360, 503, 330],  [360, 520, 13]    ];
+var o_ft_pts_start = [    [360, 520, 13],   [360, 405, -75],  [360, 0, 0]       ];
 
 
-var o_bs_pts_mirr_start = [		[-370, 0, -2087],	[-370, 0, 240],		[-370, 0, 730]		];
-var o_bk_pts_mirr_start = [		[-370, 0, 730],		[-370, 220, 860],	[-370, 420, 840]	];
-var o_tp_pts_mirr_start = [		[-370, 420, 840],	[-370, 500, 770],	[-370, 400, 600]	];
-var o_st_pts_mirr_start = [		[-370, 400, 600],	[-370, 400, 430],	[-370, 400, -2087]	];
-var o_ft_pts_mirr_start = [		[-370, 400, -2087],	[-370, 405, -2175],	[-370, 0, -2100]	];
+var o_bs_pts_mirr_start = [   [-360, 0, 0],     [-360, 0, 240],   [-360, 0, 530]    ];
+var o_bk_pts_mirr_start = [   [-360, 0, 530],   [-360, 540, 660], [-360, 907, 640]  ];
+var o_tp_pts_mirr_start = [   [-360, 907, 640], [-360, 965, 570], [-360, 907, 510]  ];
+var o_st_pts_mirr_start = [   [-360, 907, 510], [-360, 503, 330], [-360, 520, 13]   ];
+var o_ft_pts_mirr_start = [   [-360, 520, 13],  [-360, 405, -75], [-360, 0, 0]      ];
 
 
 
