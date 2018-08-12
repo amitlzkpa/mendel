@@ -16,7 +16,7 @@ Design.info = {
 	"designer": "Amit Nambiar",
 	"version": "1.0.0",
 	"license": "MIT",
-	"short_desc": "Chair with a personality.",
+	"short_desc": "Reading chair with a personality.",
 	"long_desc": "",
 	"url": null,
 	"message": "",

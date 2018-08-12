@@ -3,5 +3,5 @@
 ---
 ![image alt-text](image-url)
 # Mendel  
-###### Chair with a personality.  
+###### Reading chair with a personality.  
 ---
