@@ -652,9 +652,39 @@ function updatePts() {
 
   let weight_score = genomeData.weight.summary.score;
   let bmi_score = genomeData.bmi.summary.score;
-  let exhaustion_score = genomeData['job-related-exhaustion'].summary.score;
   let bodyfatmass_score = genomeData['body-fat-mass'].summary.score;
-  let excessivedaytimesleepiness_score = genomeData['excessive-daytime-sleepiness'].summary.score;
+
+  let mass_sc = map_range(((weight_score+bmi_score+bodyfatmass_score)/3), 0, 5, 0, 1);
+
+  // width
+  o_bs_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
+  o_bk_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
+  o_tp_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
+  o_sp_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
+  o_st_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
+  o_ft_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
+
+  o_bs_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
+  o_bk_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
+  o_tp_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
+  o_sp_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
+  o_st_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
+  o_ft_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
+
+  // seat curvarture
+  m_bk_pts_delta[1][2] += mass_sc * 30;
+  m_bk_pts_delta[2][2] += mass_sc * 30;
+  m_tp_pts_delta[0][2] += mass_sc * 30;
+  m_tp_pts_delta[1][2] += mass_sc * 30;
+  m_tp_pts_delta[2][2] += mass_sc * 30;
+  m_sp_pts_delta[0][2] += mass_sc * 30;
+  m_sp_pts_delta[1][2] += mass_sc * 30;
+  m_sp_pts_delta[2][1] -= mass_sc * 30;
+  m_st_pts_delta[0][1] -= mass_sc * 30;
+  m_st_pts_delta[1][1] -= mass_sc * 30;
+  m_st_pts_delta[2][1] -= mass_sc * 30;
+  m_ft_pts_delta[0][1] -= mass_sc * 30;
+  m_ft_pts_delta[1][1] -= mass_sc * 30;
 
 
 
@@ -663,6 +693,8 @@ function updatePts() {
 
 
 
+  let exhaustion_score = genomeData['job-related-exhaustion'].summary.score;
+  let excessivedaytimesleepiness_score = genomeData['excessive-daytime-sleepiness'].summary.score;
   
   // --------------------------------------------
 
