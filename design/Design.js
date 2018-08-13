@@ -410,6 +410,119 @@ function getGenomeData() {
 function updatePts() {
 
 
+    m_bs_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    m_bk_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    m_tp_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    m_sp_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    m_st_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    m_ft_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+
+    o_bs_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_bk_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_tp_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_sp_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_st_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_ft_pts_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+
+    o_bs_pts_mirr_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_bk_pts_mirr_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_tp_pts_mirr_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_sp_pts_mirr_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_st_pts_mirr_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+    o_ft_pts_mirr_delta.forEach((d, i) => { d[0] = 0; d[1] = 0; d[2] = 0; });
+
+
+
+    
+    // --------------------------------------------
+
+
+
+    let comfort = map_range(Design.inputState.comfort, 0, 10, 0, 1);
+
+    // fwd bkwd leans
+    m_bs_pts_delta[0][2] -= comfort * 300;
+    m_bk_pts_delta[1][2] += comfort * 120;
+    m_bk_pts_delta[2][2] += comfort * 250;
+    m_tp_pts_delta[0][2] += comfort * 250;
+    m_tp_pts_delta[1][2] += comfort * 250;
+    m_tp_pts_delta[2][2] += comfort * 250;
+    m_sp_pts_delta[0][2] += comfort * 250;
+    m_sp_pts_delta[1][2] += comfort * 250;
+    m_sp_pts_delta[2][2] += comfort * 100;
+    m_st_pts_delta[0][2] += comfort * 100;
+    m_st_pts_delta[2][2] -= comfort * 100;
+    m_ft_pts_delta[0][2] -= comfort * 100;
+    m_ft_pts_delta[1][2] -= comfort * 100;
+    m_ft_pts_delta[2][2] -= comfort * 300;
+
+    // seat height
+    m_sp_pts_delta[2][1] -= comfort * 60;
+    m_st_pts_delta[0][1] -= comfort * 60;
+    m_st_pts_delta[1][1] -= comfort * 60;
+    m_st_pts_delta[2][1] -= comfort * 60;
+    m_ft_pts_delta[0][1] -= comfort * 60;
+    m_ft_pts_delta[1][1] -= comfort * 60;
+
+
+    // fwd bkwd leans
+    o_bs_pts_delta[0][2] -= comfort * 100;
+    o_bs_pts_delta[2][2] += comfort * 10;
+    o_bk_pts_delta[0][2] += comfort * 10;
+    o_bk_pts_delta[1][2] += comfort * 120;
+    o_bk_pts_delta[2][2] += comfort * 120;
+    o_tp_pts_delta[0][2] += comfort * 120;
+    o_tp_pts_delta[1][2] += comfort * 120;
+    o_tp_pts_delta[2][2] += comfort * 120;
+    o_sp_pts_delta[0][2] += comfort * 120;
+    o_sp_pts_delta[1][2] += comfort * 90;
+    o_ft_pts_delta[2][2] -= comfort * 100;
+
+    // seat height
+    o_sp_pts_delta[2][1] -= comfort * 60;
+    o_st_pts_delta[0][1] -= comfort * 60;
+    o_st_pts_delta[1][1] -= comfort * 60;
+    o_st_pts_delta[2][1] -= comfort * 60;
+    o_ft_pts_delta[0][1] -= comfort * 60;
+    o_ft_pts_delta[1][1] -= comfort * 60;
+
+    // width
+    o_bs_pts_delta.forEach((d, i) => { d[0] += comfort * 40; });
+    o_bk_pts_delta.forEach((d, i) => { d[0] += comfort * 40; });
+    o_tp_pts_delta.forEach((d, i) => { d[0] += comfort * 40; });
+    o_sp_pts_delta.forEach((d, i) => { d[0] += comfort * 40; });
+    o_st_pts_delta.forEach((d, i) => { d[0] += comfort * 40; });
+    o_ft_pts_delta.forEach((d, i) => { d[0] += comfort * 40; });
+
+
+    // mirrors
+    o_bs_pts_mirr_delta[0][2] -= comfort * 100;
+    o_bs_pts_mirr_delta[2][2] += comfort * 10;
+    o_bk_pts_mirr_delta[0][2] += comfort * 10;
+    o_bk_pts_mirr_delta[1][2] += comfort * 120;
+    o_bk_pts_mirr_delta[2][2] += comfort * 120;
+    o_tp_pts_mirr_delta[0][2] += comfort * 120;
+    o_tp_pts_mirr_delta[1][2] += comfort * 120;
+    o_tp_pts_mirr_delta[2][2] += comfort * 120;
+    o_sp_pts_mirr_delta[0][2] += comfort * 120;
+    o_sp_pts_mirr_delta[1][2] += comfort * 90;
+    o_ft_pts_mirr_delta[2][2] -= comfort * 100;
+
+    o_sp_pts_mirr_delta[2][1] -= comfort * 60;
+    o_st_pts_mirr_delta[0][1] -= comfort * 60;
+    o_st_pts_mirr_delta[1][1] -= comfort * 60;
+    o_st_pts_mirr_delta[2][1] -= comfort * 60;
+    o_ft_pts_mirr_delta[0][1] -= comfort * 60;
+    o_ft_pts_mirr_delta[1][1] -= comfort * 60;
+
+    o_bs_pts_mirr_delta.forEach((d, i) => { d[0] -= comfort * 40; });
+    o_bk_pts_mirr_delta.forEach((d, i) => { d[0] -= comfort * 40; });
+    o_tp_pts_mirr_delta.forEach((d, i) => { d[0] -= comfort * 40; });
+    o_sp_pts_mirr_delta.forEach((d, i) => { d[0] -= comfort * 40; });
+    o_st_pts_mirr_delta.forEach((d, i) => { d[0] -= comfort * 40; });
+    o_ft_pts_mirr_delta.forEach((d, i) => { d[0] -= comfort * 40; });
+
+
 
 
     // --------------------------------------------
@@ -418,7 +531,32 @@ function updatePts() {
 
 
     genomeData = JSON.parse(getGenomeData());
-    // console.log(genomeData);
+
+    let height_score = genomeData.height.summary.score;
+
+
+
+    
+    // --------------------------------------------
+
+
+
+
+    let weight_score = genomeData.weight.summary.score;
+    let bmi_score = genomeData.bmi.summary.score;
+    let exhaustion_score = genomeData['job-related-exhaustion'].summary.score;
+    let bodyfatmass_score = genomeData['body-fat-mass'].summary.score;
+    let excessivedaytimesleepiness_score = genomeData['excessive-daytime-sleepiness'].summary.score;
+
+
+
+    
+    // --------------------------------------------
+
+
+
+    
+    // --------------------------------------------
 
 
 
@@ -434,6 +572,19 @@ function updatePts() {
     m_st_pts.forEach((d, i) => { d[0] = m_st_pts_start[i][0] + m_st_pts_delta[i][0]; d[1] = m_st_pts_start[i][1] + m_st_pts_delta[i][1]; d[2] = m_st_pts_start[i][2] + m_st_pts_delta[i][2]; });
     m_ft_pts.forEach((d, i) => { d[0] = m_ft_pts_start[i][0] + m_ft_pts_delta[i][0]; d[1] = m_ft_pts_start[i][1] + m_ft_pts_delta[i][1]; d[2] = m_ft_pts_start[i][2] + m_ft_pts_delta[i][2]; });
 
+    o_bs_pts.forEach((d, i) => { d[0] = o_bs_pts_start[i][0] + o_bs_pts_delta[i][0]; d[1] = o_bs_pts_start[i][1] + o_bs_pts_delta[i][1]; d[2] = o_bs_pts_start[i][2] + o_bs_pts_delta[i][2]; });
+    o_bk_pts.forEach((d, i) => { d[0] = o_bk_pts_start[i][0] + o_bk_pts_delta[i][0]; d[1] = o_bk_pts_start[i][1] + o_bk_pts_delta[i][1]; d[2] = o_bk_pts_start[i][2] + o_bk_pts_delta[i][2]; });
+    o_tp_pts.forEach((d, i) => { d[0] = o_tp_pts_start[i][0] + o_tp_pts_delta[i][0]; d[1] = o_tp_pts_start[i][1] + o_tp_pts_delta[i][1]; d[2] = o_tp_pts_start[i][2] + o_tp_pts_delta[i][2]; });
+    o_sp_pts.forEach((d, i) => { d[0] = o_sp_pts_start[i][0] + o_sp_pts_delta[i][0]; d[1] = o_sp_pts_start[i][1] + o_sp_pts_delta[i][1]; d[2] = o_sp_pts_start[i][2] + o_sp_pts_delta[i][2]; });
+    o_st_pts.forEach((d, i) => { d[0] = o_st_pts_start[i][0] + o_st_pts_delta[i][0]; d[1] = o_st_pts_start[i][1] + o_st_pts_delta[i][1]; d[2] = o_st_pts_start[i][2] + o_st_pts_delta[i][2]; });
+    o_ft_pts.forEach((d, i) => { d[0] = o_ft_pts_start[i][0] + o_ft_pts_delta[i][0]; d[1] = o_ft_pts_start[i][1] + o_ft_pts_delta[i][1]; d[2] = o_ft_pts_start[i][2] + o_ft_pts_delta[i][2]; });
+
+    o_bs_pts_mirr.forEach((d, i) => { d[0] = o_bs_pts_mirr_start[i][0] + o_bs_pts_mirr_delta[i][0]; d[1] = o_bs_pts_mirr_start[i][1] + o_bs_pts_mirr_delta[i][1]; d[2] = o_bs_pts_mirr_start[i][2] + o_bs_pts_mirr_delta[i][2]; });
+    o_bk_pts_mirr.forEach((d, i) => { d[0] = o_bk_pts_mirr_start[i][0] + o_bk_pts_mirr_delta[i][0]; d[1] = o_bk_pts_mirr_start[i][1] + o_bk_pts_mirr_delta[i][1]; d[2] = o_bk_pts_mirr_start[i][2] + o_bk_pts_mirr_delta[i][2]; });
+    o_tp_pts_mirr.forEach((d, i) => { d[0] = o_tp_pts_mirr_start[i][0] + o_tp_pts_mirr_delta[i][0]; d[1] = o_tp_pts_mirr_start[i][1] + o_tp_pts_mirr_delta[i][1]; d[2] = o_tp_pts_mirr_start[i][2] + o_tp_pts_mirr_delta[i][2]; });
+    o_sp_pts_mirr.forEach((d, i) => { d[0] = o_sp_pts_mirr_start[i][0] + o_sp_pts_mirr_delta[i][0]; d[1] = o_sp_pts_mirr_start[i][1] + o_sp_pts_mirr_delta[i][1]; d[2] = o_sp_pts_mirr_start[i][2] + o_sp_pts_mirr_delta[i][2]; });
+    o_st_pts_mirr.forEach((d, i) => { d[0] = o_st_pts_mirr_start[i][0] + o_st_pts_mirr_delta[i][0]; d[1] = o_st_pts_mirr_start[i][1] + o_st_pts_mirr_delta[i][1]; d[2] = o_st_pts_mirr_start[i][2] + o_st_pts_mirr_delta[i][2]; });
+    o_ft_pts_mirr.forEach((d, i) => { d[0] = o_ft_pts_mirr_start[i][0] + o_ft_pts_mirr_delta[i][0]; d[1] = o_ft_pts_mirr_start[i][1] + o_ft_pts_mirr_delta[i][1]; d[2] = o_ft_pts_mirr_start[i][2] + o_ft_pts_mirr_delta[i][2]; });
 
 
   
@@ -448,30 +599,33 @@ function updatePts() {
     var sc = getAgeMul(age);
 
     // scale all points by value
-    m_bs_pts.forEach((d, i) => { d[0] = m_bs_pts_start[i][0] * sc; d[1] = m_bs_pts_start[i][1] * sc; d[2] = m_bs_pts_start[i][2] * sc; });
-    m_bk_pts.forEach((d, i) => { d[0] = m_bk_pts_start[i][0] * sc; d[1] = m_bk_pts_start[i][1] * sc; d[2] = m_bk_pts_start[i][2] * sc; });
-    m_tp_pts.forEach((d, i) => { d[0] = m_tp_pts_start[i][0] * sc; d[1] = m_tp_pts_start[i][1] * sc; d[2] = m_tp_pts_start[i][2] * sc; });
-    m_sp_pts.forEach((d, i) => { d[0] = m_sp_pts_start[i][0] * sc; d[1] = m_sp_pts_start[i][1] * sc; d[2] = m_sp_pts_start[i][2] * sc; });
-    m_st_pts.forEach((d, i) => { d[0] = m_st_pts_start[i][0] * sc; d[1] = m_st_pts_start[i][1] * sc; d[2] = m_st_pts_start[i][2] * sc; });
-    m_ft_pts.forEach((d, i) => { d[0] = m_ft_pts_start[i][0] * sc; d[1] = m_ft_pts_start[i][1] * sc; d[2] = m_ft_pts_start[i][2] * sc; });
+    // m_bs_pts.forEach((d, i) => { d[0] = m_bs_pts_start[i][0] * sc; d[1] = m_bs_pts_start[i][1] * sc; d[2] = m_bs_pts_start[i][2] * sc; });
+    // m_bk_pts.forEach((d, i) => { d[0] = m_bk_pts_start[i][0] * sc; d[1] = m_bk_pts_start[i][1] * sc; d[2] = m_bk_pts_start[i][2] * sc; });
+    // m_tp_pts.forEach((d, i) => { d[0] = m_tp_pts_start[i][0] * sc; d[1] = m_tp_pts_start[i][1] * sc; d[2] = m_tp_pts_start[i][2] * sc; });
+    // m_sp_pts.forEach((d, i) => { d[0] = m_sp_pts_start[i][0] * sc; d[1] = m_sp_pts_start[i][1] * sc; d[2] = m_sp_pts_start[i][2] * sc; });
+    // m_st_pts.forEach((d, i) => { d[0] = m_st_pts_start[i][0] * sc; d[1] = m_st_pts_start[i][1] * sc; d[2] = m_st_pts_start[i][2] * sc; });
+    // m_ft_pts.forEach((d, i) => { d[0] = m_ft_pts_start[i][0] * sc; d[1] = m_ft_pts_start[i][1] * sc; d[2] = m_ft_pts_start[i][2] * sc; });
 
-    o_bs_pts.forEach((d, i) => { d[0] = o_bs_pts_start[i][0] * sc; d[1] = o_bs_pts_start[i][1] * sc; d[2] = o_bs_pts_start[i][2] * sc; });
-    o_bk_pts.forEach((d, i) => { d[0] = o_bk_pts_start[i][0] * sc; d[1] = o_bk_pts_start[i][1] * sc; d[2] = o_bk_pts_start[i][2] * sc; });
-    o_tp_pts.forEach((d, i) => { d[0] = o_tp_pts_start[i][0] * sc; d[1] = o_tp_pts_start[i][1] * sc; d[2] = o_tp_pts_start[i][2] * sc; });
-    o_sp_pts.forEach((d, i) => { d[0] = o_sp_pts_start[i][0] * sc; d[1] = o_sp_pts_start[i][1] * sc; d[2] = o_sp_pts_start[i][2] * sc; });
-    o_st_pts.forEach((d, i) => { d[0] = o_st_pts_start[i][0] * sc; d[1] = o_st_pts_start[i][1] * sc; d[2] = o_st_pts_start[i][2] * sc; });
-    o_ft_pts.forEach((d, i) => { d[0] = o_ft_pts_start[i][0] * sc; d[1] = o_ft_pts_start[i][1] * sc; d[2] = o_ft_pts_start[i][2] * sc; });
+    // o_bs_pts.forEach((d, i) => { d[0] = o_bs_pts_start[i][0] * sc; d[1] = o_bs_pts_start[i][1] * sc; d[2] = o_bs_pts_start[i][2] * sc; });
+    // o_bk_pts.forEach((d, i) => { d[0] = o_bk_pts_start[i][0] * sc; d[1] = o_bk_pts_start[i][1] * sc; d[2] = o_bk_pts_start[i][2] * sc; });
+    // o_tp_pts.forEach((d, i) => { d[0] = o_tp_pts_start[i][0] * sc; d[1] = o_tp_pts_start[i][1] * sc; d[2] = o_tp_pts_start[i][2] * sc; });
+    // o_sp_pts.forEach((d, i) => { d[0] = o_sp_pts_start[i][0] * sc; d[1] = o_sp_pts_start[i][1] * sc; d[2] = o_sp_pts_start[i][2] * sc; });
+    // o_st_pts.forEach((d, i) => { d[0] = o_st_pts_start[i][0] * sc; d[1] = o_st_pts_start[i][1] * sc; d[2] = o_st_pts_start[i][2] * sc; });
+    // o_ft_pts.forEach((d, i) => { d[0] = o_ft_pts_start[i][0] * sc; d[1] = o_ft_pts_start[i][1] * sc; d[2] = o_ft_pts_start[i][2] * sc; });
 
-    o_bs_pts_mirr.forEach((d, i) => { d[0] = o_bs_pts_mirr_start[i][0] * sc; d[1] = o_bs_pts_mirr_start[i][1] * sc; d[2] = o_bs_pts_mirr_start[i][2] * sc; });
-    o_bk_pts_mirr.forEach((d, i) => { d[0] = o_bk_pts_mirr_start[i][0] * sc; d[1] = o_bk_pts_mirr_start[i][1] * sc; d[2] = o_bk_pts_mirr_start[i][2] * sc; });
-    o_tp_pts_mirr.forEach((d, i) => { d[0] = o_tp_pts_mirr_start[i][0] * sc; d[1] = o_tp_pts_mirr_start[i][1] * sc; d[2] = o_tp_pts_mirr_start[i][2] * sc; });
-    o_sp_pts_mirr.forEach((d, i) => { d[0] = o_sp_pts_mirr_start[i][0] * sc; d[1] = o_sp_pts_mirr_start[i][1] * sc; d[2] = o_sp_pts_mirr_start[i][2] * sc; });
-    o_st_pts_mirr.forEach((d, i) => { d[0] = o_st_pts_mirr_start[i][0] * sc; d[1] = o_st_pts_mirr_start[i][1] * sc; d[2] = o_st_pts_mirr_start[i][2] * sc; });
-    o_ft_pts_mirr.forEach((d, i) => { d[0] = o_ft_pts_mirr_start[i][0] * sc; d[1] = o_ft_pts_mirr_start[i][1] * sc; d[2] = o_ft_pts_mirr_start[i][2] * sc; });
+    // o_bs_pts_mirr.forEach((d, i) => { d[0] = o_bs_pts_mirr_start[i][0] * sc; d[1] = o_bs_pts_mirr_start[i][1] * sc; d[2] = o_bs_pts_mirr_start[i][2] * sc; });
+    // o_bk_pts_mirr.forEach((d, i) => { d[0] = o_bk_pts_mirr_start[i][0] * sc; d[1] = o_bk_pts_mirr_start[i][1] * sc; d[2] = o_bk_pts_mirr_start[i][2] * sc; });
+    // o_tp_pts_mirr.forEach((d, i) => { d[0] = o_tp_pts_mirr_start[i][0] * sc; d[1] = o_tp_pts_mirr_start[i][1] * sc; d[2] = o_tp_pts_mirr_start[i][2] * sc; });
+    // o_sp_pts_mirr.forEach((d, i) => { d[0] = o_sp_pts_mirr_start[i][0] * sc; d[1] = o_sp_pts_mirr_start[i][1] * sc; d[2] = o_sp_pts_mirr_start[i][2] * sc; });
+    // o_st_pts_mirr.forEach((d, i) => { d[0] = o_st_pts_mirr_start[i][0] * sc; d[1] = o_st_pts_mirr_start[i][1] * sc; d[2] = o_st_pts_mirr_start[i][2] * sc; });
+    // o_ft_pts_mirr.forEach((d, i) => { d[0] = o_ft_pts_mirr_start[i][0] * sc; d[1] = o_ft_pts_mirr_start[i][1] * sc; d[2] = o_ft_pts_mirr_start[i][2] * sc; });
 
 
 	
 	// --------------------------------------------
+
+
+    // console.log(m_bs_pts_delta);
 
 
 }
@@ -518,26 +672,26 @@ var doublebedSlicingOn;
 
 
 // inner profile
-var m_bs_pts_start = [    [0, 0, 0],      [0, 0, 252],    [0, 0, 605]     ];
-var m_bk_pts_start = [    [0, 0, 685],    [0, 400, 800],  [0, 952, 720]   ];
-var m_tp_pts_start = [    [0, 952, 720],  [0, 1020, 607],  [0, 860, 552]   ];
+var m_bs_pts_start = [    [0, 0, 0],      [0, 0, 252],    [0, 0, 685]     ];
+var m_bk_pts_start = [    [0, 0, 685],    [0, 400, 740],  [0, 952, 720]   ];
+var m_tp_pts_start = [    [0, 952, 720],  [0, 1020, 680],  [0, 860, 552]   ];
 var m_sp_pts_start = [    [0, 860, 552],  [0, 755, 530],  [0, 480, 520]    ];
 var m_st_pts_start = [    [0, 480, 520],  [0, 450, 366],  [0, 480, 14]    ];
 var m_ft_pts_start = [    [0, 480, 14],   [0, 456, -63],  [0, 0, 0]       ];
 
 
 // outer profiles
-var o_bs_pts_start = [    [380, 0, 0],      [380, 0, 240],    [380, 0, 530]     ];
-var o_bk_pts_start = [    [380, 0, 600],    [380, 540, 720],  [380, 1007, 700]   ];
-var o_tp_pts_start = [    [380, 1007, 700],  [380, 1065, 600],  [380, 907, 510]   ];
+var o_bs_pts_start = [    [380, 0, 0],      [380, 0, 240],    [380, 0, 600]     ];
+var o_bk_pts_start = [    [380, 0, 600],    [380, 540, 660],  [380, 1007, 700]   ];
+var o_tp_pts_start = [    [380, 1007, 700],  [380, 1065, 640],  [380, 907, 510]   ];
 var o_sp_pts_start = [    [380, 907, 510],  [380, 603, 490],  [380, 520, 470]   ];
 var o_st_pts_start = [    [380, 520, 470],  [380, 503, 330],  [380, 520, 13]    ];
 var o_ft_pts_start = [    [380, 520, 13],   [380, 405, -75],  [380, 0, 0]       ];
 
 
-var o_bs_pts_mirr_start = [   [-380, 0, 0],     [-380, 0, 240],   [-380, 0, 530 ]   ];
-var o_bk_pts_mirr_start = [   [-380, 0, 600],   [-380, 540, 720], [-380, 1007, 700]  ];
-var o_tp_pts_mirr_start = [   [-380, 1007, 700], [-380, 1065, 600], [-380, 907, 510]  ];
+var o_bs_pts_mirr_start = [   [-380, 0, 0],     [-380, 0, 240],   [-380, 0, 600 ]   ];
+var o_bk_pts_mirr_start = [   [-380, 0, 600],   [-380, 540, 660], [-380, 1007, 700]  ];
+var o_tp_pts_mirr_start = [   [-380, 1007, 700], [-380, 1065, 640], [-380, 907, 510]  ];
 var o_sp_pts_mirr_start = [   [-380, 907, 510], [-380, 603, 490], [-380, 520, 470]  ];
 var o_st_pts_mirr_start = [   [-380, 520, 470], [-380, 503, 330], [-380, 520, 13]   ];
 var o_ft_pts_mirr_start = [   [-380, 520, 13],  [-380, 405, -75], [-380, 0, 0]      ];
