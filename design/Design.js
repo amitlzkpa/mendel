@@ -695,6 +695,93 @@ function updatePts() {
 
   let exhaustion_score = genomeData['job-related-exhaustion'].summary.score;
   let excessivedaytimesleepiness_score = genomeData['excessive-daytime-sleepiness'].summary.score;
+
+  let exh_sc = map_range(((exhaustion_score+excessivedaytimesleepiness_score)/2), 0, 5, 0, 1);
+
+  // fwd bkwd leans
+  m_bs_pts_delta[0][2] -= exh_sc * 100;
+  m_bk_pts_delta[1][2] += exh_sc * 40;
+  m_bk_pts_delta[2][2] += exh_sc * 80;
+  m_tp_pts_delta[0][2] += exh_sc * 80;
+  m_tp_pts_delta[1][2] += exh_sc * 80;
+  m_tp_pts_delta[2][2] += exh_sc * 80;
+  m_sp_pts_delta[0][2] += exh_sc * 80;
+  m_sp_pts_delta[1][2] += exh_sc * 80;
+  m_sp_pts_delta[2][2] += exh_sc * 30;
+  m_st_pts_delta[0][2] += exh_sc * 30;
+  m_st_pts_delta[2][2] -= exh_sc * 30;
+  m_ft_pts_delta[0][2] -= exh_sc * 30;
+  m_ft_pts_delta[1][2] -= exh_sc * 30;
+  m_ft_pts_delta[2][2] -= exh_sc * 100;
+
+  // seat height
+  m_sp_pts_delta[2][1] -= exh_sc * 20;
+  m_st_pts_delta[0][1] -= exh_sc * 20;
+  m_st_pts_delta[1][1] -= exh_sc * 20;
+  m_st_pts_delta[2][1] -= exh_sc * 20;
+  m_ft_pts_delta[0][1] -= exh_sc * 20;
+  m_ft_pts_delta[1][1] -= exh_sc * 20;
+
+
+  // fwd bkwd leans
+  o_bs_pts_delta[0][2] -= exh_sc * 30;
+  o_bs_pts_delta[2][2] += exh_sc * 10;
+  o_bk_pts_delta[0][2] += exh_sc * 10;
+  o_bk_pts_delta[1][2] += exh_sc * 40;
+  o_bk_pts_delta[2][2] += exh_sc * 40;
+  o_tp_pts_delta[0][2] += exh_sc * 40;
+  o_tp_pts_delta[1][2] += exh_sc * 40;
+  o_tp_pts_delta[2][2] += exh_sc * 40;
+  o_sp_pts_delta[0][2] += exh_sc * 40;
+  o_sp_pts_delta[1][2] += exh_sc * 90;
+  o_ft_pts_delta[2][2] -= exh_sc * 30;
+
+  // seat height
+  o_sp_pts_delta[2][1] -= exh_sc * 20;
+  o_st_pts_delta[0][1] -= exh_sc * 20;
+  o_st_pts_delta[1][1] -= exh_sc * 20;
+  o_st_pts_delta[2][1] -= exh_sc * 20;
+  o_ft_pts_delta[0][1] -= exh_sc * 20;
+  o_ft_pts_delta[1][1] -= exh_sc * 20;
+
+  // width
+  o_bs_pts_delta.forEach((d, i) => { d[0] += exh_sc * 20; });
+  o_bk_pts_delta.forEach((d, i) => { d[0] += exh_sc * 20; });
+  o_tp_pts_delta.forEach((d, i) => { d[0] += exh_sc * 20; });
+  o_sp_pts_delta.forEach((d, i) => { d[0] += exh_sc * 20; });
+  o_st_pts_delta.forEach((d, i) => { d[0] += exh_sc * 20; });
+  o_ft_pts_delta.forEach((d, i) => { d[0] += exh_sc * 20; });
+
+
+  // mirrors
+  o_bs_pts_mirr_delta[0][2] -= exh_sc * 30;
+  o_bs_pts_mirr_delta[2][2] += exh_sc * 10;
+  o_bk_pts_mirr_delta[0][2] += exh_sc * 10;
+  o_bk_pts_mirr_delta[1][2] += exh_sc * 40;
+  o_bk_pts_mirr_delta[2][2] += exh_sc * 40;
+  o_tp_pts_mirr_delta[0][2] += exh_sc * 40;
+  o_tp_pts_mirr_delta[1][2] += exh_sc * 40;
+  o_tp_pts_mirr_delta[2][2] += exh_sc * 40;
+  o_sp_pts_mirr_delta[0][2] += exh_sc * 40;
+  o_sp_pts_mirr_delta[1][2] += exh_sc * 90;
+  o_ft_pts_mirr_delta[2][2] -= exh_sc * 30;
+
+  o_sp_pts_mirr_delta[2][1] -= exh_sc * 20;
+  o_st_pts_mirr_delta[0][1] -= exh_sc * 20;
+  o_st_pts_mirr_delta[1][1] -= exh_sc * 20;
+  o_st_pts_mirr_delta[2][1] -= exh_sc * 20;
+  o_ft_pts_mirr_delta[0][1] -= exh_sc * 20;
+  o_ft_pts_mirr_delta[1][1] -= exh_sc * 20;
+
+  o_bs_pts_mirr_delta.forEach((d, i) => { d[0] -= exh_sc * 20; });
+  o_bk_pts_mirr_delta.forEach((d, i) => { d[0] -= exh_sc * 20; });
+  o_tp_pts_mirr_delta.forEach((d, i) => { d[0] -= exh_sc * 20; });
+  o_sp_pts_mirr_delta.forEach((d, i) => { d[0] -= exh_sc * 20; });
+  o_st_pts_mirr_delta.forEach((d, i) => { d[0] -= exh_sc * 20; });
+  o_ft_pts_mirr_delta.forEach((d, i) => { d[0] -= exh_sc * 20; });
+
+
+
   
   // --------------------------------------------
 
