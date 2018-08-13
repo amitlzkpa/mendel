@@ -49,15 +49,15 @@ Design.inputs = {
 	"age": { 
 		"type": "slider",
 		"label": "Age",
-		"default": 22,
-		"min": 6,
-		"max": 80
+		"default": 18,
+		"min": 18,
+		"max": 40
 	},
   "comfort": { 
     "type": "slider",
     "label": "Comfort",
     "tip": "Is it for use in a relaxed environment?",
-    "default": 4,
+    "default": 0,
     "min": 0,
     "max": 10
   },
@@ -146,6 +146,43 @@ function getGenomeData() {
                           "score": 2,
                           "text": "Intermediate",
                           "warnings": []
+                        }
+                      },
+                      "job-related-exhaustion": {
+                        "phenotype": {
+                          "url_name": "job-related-exhaustion",
+                          "display_name": "Job related exhaustion",
+                          "category": "trait"
+                        },
+                        "population": "european",
+                        "scores": [
+                          {
+                            "score": 0,
+                            "text": "Tend not to be exhausted"
+                          },
+                          {
+                            "score": 1,
+                            "text": "Tend not to be exhausted, slightly"
+                          },
+                          {
+                            "score": 2,
+                            "text": "Intermediate"
+                          },
+                          {
+                            "score": 3,
+                            "text": "Slight tendency to be exhausted"
+                          },
+                          {
+                            "score": 4,
+                            "text": "Stronger tendency to be exhausted"
+                          }
+                        ],
+                        "summary": {
+                          "score": 2,
+                          "text": "Intermediate",
+                          "warnings": [
+                            "reliability is low"
+                          ]
                         }
                       },
                       "excessive-daytime-sleepiness": {
