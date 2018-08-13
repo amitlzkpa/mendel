@@ -62,10 +62,11 @@ Design.inputs = {
     "max": 10
   },
 	"genome-id": {
-		"type": "text",
-		"tip": "Enter your Genome ID to customise the design with information from your genetic information.",
+    "type": "select",
 		"label": "Genome ID",
-		"default": "dolly"
+    "tip": "Enter your Genome ID to customise the design with information from your genetic information.",
+    "choices": ["Sample1", "Sample2", "Sample3"],
+    "default": "Sample1",
 	}
 }
 
@@ -110,7 +111,7 @@ function getAgeMul(age) {
 
 
 
-function getGenomeData(id=1) {
+function getGenomeData(id='Sample1') {
     let genome1 =   `
                     {
                       "caffeine-consumption": {
@@ -981,7 +982,7 @@ function getGenomeData(id=1) {
                       }
                     }
                     `;
-    return (id==1) ? genome1 : (id==2) ? genome2 : genome3;
+    return (id=='Sample1') ? genome1 : (id=='Sample2') ? genome2 : genome3;
 }
 
 
@@ -1177,7 +1178,7 @@ function updatePts() {
 
 
 
-  genomeData = JSON.parse(getGenomeData());
+  genomeData = JSON.parse(getGenomeData(Design.inputState['genome-id']));
 
   let height_score = genomeData.height.summary.score;
   let ht_sc = map_range(height_score, 0, 5, 0, 1);
