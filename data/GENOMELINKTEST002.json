@@ -34,6 +34,43 @@
       "warnings": []
     }
   },
+  "job-related-exhaustion": {
+    "phenotype": {
+      "url_name": "job-related-exhaustion",
+      "display_name": "Job related exhaustion",
+      "category": "trait"
+    },
+    "population": "european",
+    "scores": [
+      {
+        "score": 0,
+        "text": "Tend not to be exhausted"
+      },
+      {
+        "score": 1,
+        "text": "Tend not to be exhausted, slightly"
+      },
+      {
+        "score": 2,
+        "text": "Intermediate"
+      },
+      {
+        "score": 3,
+        "text": "Slight tendency to be exhausted"
+      },
+      {
+        "score": 4,
+        "text": "Stronger tendency to be exhausted"
+      }
+    ],
+    "summary": {
+      "score": 4,
+      "text": "Stronger tendency to be exhausted",
+      "warnings": [
+        "reliability is low"
+      ]
+    }
+  },
   "excessive-daytime-sleepiness": {
     "phenotype": {
       "url_name": "excessive-daytime-sleepiness",
