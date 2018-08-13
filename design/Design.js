@@ -600,6 +600,35 @@ function updatePts() {
   genomeData = JSON.parse(getGenomeData());
 
   let height_score = genomeData.height.summary.score;
+  let ht_sc = map_range(height_score, 0, 5, 0, 1);
+
+  // height attenuation
+  m_bs_pts_delta[0][2] -= ht_sc * 100;
+  m_bk_pts_delta[1][2] += ht_sc * 60;
+  m_bk_pts_delta[2][2] += ht_sc * 240;
+  m_tp_pts_delta[0][2] += ht_sc * 240;
+  m_tp_pts_delta[1][2] += ht_sc * 240;
+  m_tp_pts_delta[2][2] += ht_sc * 240;
+  m_sp_pts_delta[0][2] += ht_sc * 240;
+  m_sp_pts_delta[1][2] += ht_sc * 240;
+  m_sp_pts_delta[2][2] += ht_sc * 60;
+  m_st_pts_delta[0][2] += ht_sc * 60;
+  m_st_pts_delta[2][2] -= ht_sc * 60;
+  m_ft_pts_delta[0][2] -= ht_sc * 60;
+  m_ft_pts_delta[1][2] -= ht_sc * 60;
+  m_ft_pts_delta[2][2] -= ht_sc * 100;
+
+  o_bs_pts_delta[0][2] -= ht_sc * 100;
+  o_bs_pts_delta[2][2] += ht_sc * 10;
+  o_bk_pts_delta[0][2] += ht_sc * 10;
+  o_bk_pts_delta[1][2] += ht_sc * 120;
+  o_bk_pts_delta[2][2] += ht_sc * 120;
+  o_tp_pts_delta[0][2] += ht_sc * 120;
+  o_tp_pts_delta[1][2] += ht_sc * 120;
+  o_tp_pts_delta[2][2] += ht_sc * 120;
+  o_sp_pts_delta[0][2] += ht_sc * 120;
+  o_sp_pts_delta[1][2] += ht_sc * 90;
+  o_ft_pts_delta[2][2] -= ht_sc * 100;
 
 
 
