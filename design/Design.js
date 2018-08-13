@@ -630,6 +630,18 @@ function updatePts() {
   o_sp_pts_delta[1][2] += ht_sc * 90;
   o_ft_pts_delta[2][2] -= ht_sc * 100;
 
+  o_bs_pts_mirr_delta[0][2] -= ht_sc * 100;
+  o_bs_pts_mirr_delta[2][2] += ht_sc * 10;
+  o_bk_pts_mirr_delta[0][2] += ht_sc * 10;
+  o_bk_pts_mirr_delta[1][2] += ht_sc * 120;
+  o_bk_pts_mirr_delta[2][2] += ht_sc * 120;
+  o_tp_pts_mirr_delta[0][2] += ht_sc * 120;
+  o_tp_pts_mirr_delta[1][2] += ht_sc * 120;
+  o_tp_pts_mirr_delta[2][2] += ht_sc * 120;
+  o_sp_pts_mirr_delta[0][2] += ht_sc * 120;
+  o_sp_pts_mirr_delta[1][2] += ht_sc * 90;
+  o_ft_pts_mirr_delta[2][2] -= ht_sc * 100;
+
 
 
   
