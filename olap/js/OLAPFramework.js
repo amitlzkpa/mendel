@@ -254,33 +254,38 @@ class OLAPFramework {
 	}
 
 	async downloadHumans() {
-		let url, model, objLoader;
+		let url;
+		let material = new THREE.MeshPhongMaterial({side: THREE.DoubleSide,
+													color: 0xBEBEBE,
+													transparent: true,
+													opacity: 0.3,
+													shininess: 0.1,
+													specular: 0x000000
+												  });
 		url = "https://raw.githubusercontent.com/O-LAP/home/master/olap/files/denace.obj";
-		model = await $.get(url);
-		objLoader = new THREE.OBJLoader();
-		objLoader.setPath(url);
-	    objLoader.load(model, function (object) {
-		    object.traverse( function ( child ) {
-		        if ( child instanceof THREE.Mesh ) {
-		            child.material = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, color: 0xBEBEBE, transparent: true, opacity: 0.3, shininess: 0.1, specular: 0x000000 } );
-		        }
-		    });
-			OLAP.maleModel = new THREE.Object3D();
-	    	OLAP.maleModel.add(object);
-	    });
+		await this.loadModel(
+								url,
+								(obj) => {
+									OLAP.maleModel = obj;
+								},
+								(xhr) => {},
+								(e) => {
+									console.log('Failed loading male model');
+								},
+								material
+							);
 		url = "https://raw.githubusercontent.com/O-LAP/home/master/olap/files/bianca.obj";
-		model = await $.get(url);
-		objLoader = new THREE.OBJLoader();
-		objLoader.setPath(url);
-	    objLoader.load(model, function (object) {
-		    object.traverse( function ( child ) {
-		        if ( child instanceof THREE.Mesh ) {
-		            child.material = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, color: 0xBEBEBE, transparent: true, opacity: 0.3, shininess: 0.1, specular: 0x000000 } );
-		        }
-		    });
-			OLAP.femaleModel = new THREE.Object3D();
-	    	OLAP.femaleModel.add(object);
-	    });
+		await this.loadModel(
+								url,
+								(obj) => {
+									OLAP.femaleModel = obj;
+								},
+								(xhr) => {},
+								(e) => {
+									console.log('Failed loading male model');
+								},
+								material
+							);
 	    OLAP.activeHumanGeom = new THREE.Object3D();
     	OLAP.activeHumanGeom.add(OLAP.maleModel);
 	}
