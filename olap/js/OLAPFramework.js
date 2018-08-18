@@ -1,4 +1,11 @@
 
+async function wait(ms) {
+	console.log(`Waiting for ${ms} seconds...`);
+	return new Promise((resolve, reject) => setTimeout(() => resolve(), ms));1
+}
+
+//------------------------------------
+
 function hasMethod(objToChk, methodName) {
 	return objToChk && typeof objToChk[methodName] === "function";
 }
