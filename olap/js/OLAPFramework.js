@@ -581,6 +581,34 @@ class OLAPFramework {
 	}
 
 
+	// load .obj models 
+	// url — A string containing the path/URL of the .obj file.
+	// onLoad — (optional) A function to be called after the loading is successfully completed. The function receives the loaded Object3D as an argument.
+	// onProgress — (optional) A function to be called while the loading is in progress. The function receives a XMLHttpRequest instance, which contains total and loaded bytes.
+	// onError — (optional) A function to be called if an error occurs during loading. The function receives error as an argument.
+	// material - (optional) Material to be applied to the model
+	async loadModel(url, onLoad, onProg, onErr, material) {
+		// let model = await $.get(url);
+		let objLoader = new THREE.OBJLoader();
+		// objLoader.setPath(url);
+	    objLoader.load(url, (object) => {
+						    	if(material) {
+								    object.traverse( function ( child ) {
+								        if ( child instanceof THREE.Mesh ) {
+								            child.material = material;
+								        }
+								    });
+						    	}
+								onLoad(object);
+						    },
+						    onProg, onErr
+						);
+	}
+
+}
+
+
+
 async function go() {
 	OLAP = new OLAPFramework();
 	await OLAP.init();
