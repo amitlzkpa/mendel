@@ -1509,18 +1509,6 @@ Design.init = async function() {
 }
 
 /**
- * Called when any parameter is updated.
- * @param {object} params 		Object containing key-value pairs with 
- * 								code-label as specified in "Design.inputs" as 
- *								key and their updated values as values. The same
- * 								values are available in "Design.inputState".
- */
-Design.onParamChange = function(params) {
-	this.inputState = params;
-    updatePts();
-}
-
-/**
  * Called to request updates to the design.
  * @param {THREE.Object3D} group 	Object passed for adding elements.
  * 									This object is removed from the scene before
@@ -1528,7 +1516,11 @@ Design.onParamChange = function(params) {
  *									at the end. Called after parameters are 
  *									updated
  */
-Design.updateGeom = function(group, sliceManager) {
+Design.updateGeom = async function(group, params, sliceManager) {
+
+
+  this.inputState = params;
+  updatePts();
 
 
 
