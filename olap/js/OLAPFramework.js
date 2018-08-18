@@ -568,7 +568,7 @@ class OLAPFramework {
 						    `;
 				var r = this.$ui.append(html);
 				var fw = this;													// cache ref to framework for passing it to the event listening registration
-				r.find("#" + id).on('change', async function(e){
+				r.find("#" + id).on('input', async function(e){
 					fw.inputVals[id] = $(this).val();							// update curr state
 					await fw.updateGeom();										// trigger an update
 				});
