@@ -347,9 +347,6 @@ class OLAPFramework {
 
 	}
 
-	constructor() {
-	}
-
 	async init() {
 		this.version = "1.0.0";
 		this.scene = scene;
@@ -402,7 +399,7 @@ class OLAPFramework {
 	    });
 	}
 
-	openDesign(designObj, gitAuthor, gitRepo) {
+	async openDesign(designObj, gitAuthor, gitRepo) {
 
 		this.checkMessage();
 
@@ -426,11 +423,6 @@ class OLAPFramework {
 			console.log("Aborting design open.");
 			return;
 		}
-		if(!hasMethod(designObj, "onParamChange")) {
-			console.log("Design file needs to implement 'onParamChange' method to recieve updated parameter values.");
-			console.log("Aborting design open.");
-			return;
-		}
 		if(!hasMethod(designObj, "updateGeom")) {
 			console.log("Design file needs to implement 'updateGeom' method to trigger design regeneration.");
 			console.log("Aborting design open.");
@@ -440,9 +432,9 @@ class OLAPFramework {
 		this.clearUI();
 		this.clearGeometry();
 		this.loadedDesign = designObj;
-		this.loadedDesign.init();
-		this.loadUI(gitAuthor, gitRepo);
-		this.updateGeom();
+		await this.loadedDesign.init();
+		await this.loadUI(gitAuthor, gitRepo);
+		await this.updateGeom();
 	}
 
 	clearUI() {
@@ -488,7 +480,7 @@ class OLAPFramework {
 		});
 	}
 
-	updateGeom() {
+	async updateGeom() {
 		this.scene.remove(this.geometry);
 		this.scene.remove(this.slices);
 		this.geometry = new THREE.Object3D();
@@ -499,9 +491,8 @@ class OLAPFramework {
 		    inpStateCopy[key] = value;
 		}
 		this.loadedDesign.inputState = inpStateCopy;
-		this.loadedDesign.onParamChange(inpStateCopy);
 		this.sliceManager = new SliceManager();
-		this.loadedDesign.updateGeom(this.geometry, this.sliceManager)
+		await this.loadedDesign.updateGeom(this.geometry, inpStateCopy, this.sliceManager);
 		this.scene.add(this.geometry);
 		if(this.showSec) {
 			this.slices = this.sliceManager.getAllSlicesFromSet(this.geometry);
@@ -523,9 +514,9 @@ class OLAPFramework {
 				var p = this.$ui.append(html);
 				$('select').formSelect();										// materilize initialization
 				var fw = this;													// cache ref to framework for passing it to the event listening registration
-				p.find('#' + id).on('change',function(e){
+				p.find('#' + id).on('change', async function(e){
 					fw.inputVals[id] = $('#'+id + ' :selected').text();			// update curr state
-					fw.updateGeom();											// trigger an update
+					await fw.updateGeom();											// trigger an update
 				});
 				break;
 			case "slider":
@@ -541,9 +532,9 @@ class OLAPFramework {
 							`;
 				var q = this.$ui.append(html);
 				var fw = this;													// cache ref to framework for passing it to the event listening registration
-				q.find('#' + id).on('input',function(e){
+				q.find('#' + id).on('input', async function(e){
 					fw.inputVals[id] = $(this).val();							// update curr state
-					fw.updateGeom();											// trigger an update
+					await fw.updateGeom();										// trigger an update
 				});
 				break;
 			case "bool":
@@ -559,9 +550,9 @@ class OLAPFramework {
 						    `;
 				var r = this.$ui.append(html);
 				var fw = this;													// cache ref to framework for passing it to the event listening registration
-				r.find("#" + id).on('change',function(e){
+				r.find("#" + id).on('change', async function(e){
 					fw.inputVals[id] = $(this).is(":checked");					// update curr state
-					fw.updateGeom();											// trigger an update
+					await fw.updateGeom();										// trigger an update
 				});
 				break;
 			case "text":
@@ -577,9 +568,9 @@ class OLAPFramework {
 						    `;
 				var r = this.$ui.append(html);
 				var fw = this;													// cache ref to framework for passing it to the event listening registration
-				r.find("#" + id).on('change',function(e){
-					fw.inputVals[id] = $(this).val();					// update curr state
-					fw.updateGeom();											// trigger an update
+				r.find("#" + id).on('change', async function(e){
+					fw.inputVals[id] = $(this).val();							// update curr state
+					await fw.updateGeom();										// trigger an update
 				});
 				break;
 		}
@@ -592,6 +583,7 @@ class OLAPFramework {
 	// onProgress — (optional) A function to be called while the loading is in progress. The function receives a XMLHttpRequest instance, which contains total and loaded bytes.
 	// onError — (optional) A function to be called if an error occurs during loading. The function receives error as an argument.
 	// material - (optional) Material to be applied to the model
+	// ref: https://threejs.org/docs/#examples/loaders/OBJLoader
 	async loadModel(url, onLoad, onProg, onErr, material) {
 		// let model = await $.get(url);
 		let objLoader = new THREE.OBJLoader();
