@@ -343,6 +343,9 @@ class OLAPFramework {
 	}
 
 	constructor() {
+	}
+
+	async init() {
 		this.version = "1.0.0";
 		this.scene = scene;
 		this.inputs = {};
@@ -577,9 +580,13 @@ class OLAPFramework {
 		}
 	}
 
+
+async function go() {
+	OLAP = new OLAPFramework();
+	await OLAP.init();
 }
 
 
-var OLAP = new OLAPFramework();
 
+go();
 

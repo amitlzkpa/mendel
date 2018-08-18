@@ -1505,7 +1505,7 @@ var o_ft_pts_mirr = JSON.parse(JSON.stringify(o_ft_pts_mirr_start));
  * Called on design initialization; called before UI is updated to show params.
  * Use for initializing values.
  */
-Design.init = function() {
+Design.init = async function() {
 }
 
 /**
