@@ -62,11 +62,9 @@ Design.inputs = {
     "max": 10
   },
 	"genome-id": {
-    "type": "select",
+    "type": "text",
 		"label": "Genome ID",
     "tip": "Enter your Genome ID to customise the design with information from your genetic information.",
-    "choices": ["Sample1", "Sample2", "Sample3"],
-    "default": "Sample1",
 	}
 }
 
@@ -111,884 +109,885 @@ function getAgeMul(age) {
 
 
 
-function getGenomeData(id='Sample1') {
-    let genome1 =   `
-                    {
-                      "caffeine-consumption": {
-                        "phenotype": {
-                          "url_name": "caffeine-consumption",
-                          "display_name": "Caffeine consumption",
-                          "category": "food_and_nutrition"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Less cup of coffee"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly less cup of coffee"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly more cup of coffee"
-                          },
-                          {
-                            "score": 4,
-                            "text": "More cup of coffee"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
+async function getGenomeData(id='Sample1') {
+  let genome1 =   `
+                  {
+                    "caffeine-consumption": {
+                      "phenotype": {
+                        "url_name": "caffeine-consumption",
+                        "display_name": "Caffeine consumption",
+                        "category": "food_and_nutrition"
                       },
-                      "job-related-exhaustion": {
-                        "phenotype": {
-                          "url_name": "job-related-exhaustion",
-                          "display_name": "Job related exhaustion",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to be exhausted"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to be exhausted, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to be exhausted"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to be exhausted"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "excessive-daytime-sleepiness": {
-                        "phenotype": {
-                          "url_name": "excessive-daytime-sleepiness",
-                          "display_name": "Excessive daytime sleepiness",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to get daytime sleepiness"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to get daytime sleepiness, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to get daytime sleepiness"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to get daytime sleepiness"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "body-fat-mass": {
-                        "phenotype": {
-                          "url_name": "body-fat-mass",
-                          "display_name": "Body fat mass",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
-                      },
-                      "body-fat-percentage": {
-                        "phenotype": {
-                          "url_name": "body-fat-percentage",
-                          "display_name": "Body fat percentage",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower fat percentage"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower fat percentage"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher fat percentage"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher fat percentage"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
-                      },
-                      "bmi": {
-                        "phenotype": {
-                          "url_name": "bmi",
-                          "display_name": "BMI",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher"
-                          }
-                        ],
-                        "summary": {
-                          "score": 3,
-                          "text": "Slightly higher",
-                          "warnings": []
-                        }
-                      },
-                      "weight": {
-                        "phenotype": {
-                          "url_name": "weight",
-                          "display_name": "Genetic weight",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to have heavy weight"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to have heavy weight, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to have heavy weight"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to have heavy weight"
-                          }
-                        ],
-                        "summary": {
-                          "score": 1,
-                          "text": "Tend not to have heavy weight, slightly",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "height": {
-                        "phenotype": {
-                          "url_name": "height",
-                          "display_name": "Height",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Shorter"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly shorter"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly taller"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Taller"
-                          }
-                        ],
-                        "summary": {
-                          "score": 1,
-                          "text": "Slightly shorter",
-                          "warnings": []
-                        }
-                      }
-                    }
-                    `;
-    let genome2 =   `
-                    {
-                      "caffeine-consumption": {
-                        "phenotype": {
-                          "url_name": "caffeine-consumption",
-                          "display_name": "Caffeine consumption",
-                          "category": "food_and_nutrition"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Less cup of coffee"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly less cup of coffee"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly more cup of coffee"
-                          },
-                          {
-                            "score": 4,
-                            "text": "More cup of coffee"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
-                      },
-                      "job-related-exhaustion": {
-                        "phenotype": {
-                          "url_name": "job-related-exhaustion",
-                          "display_name": "Job related exhaustion",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to be exhausted"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to be exhausted, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to be exhausted"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to be exhausted"
-                          }
-                        ],
-                        "summary": {
-                          "score": 4,
-                          "text": "Stronger tendency to be exhausted",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "excessive-daytime-sleepiness": {
-                        "phenotype": {
-                          "url_name": "excessive-daytime-sleepiness",
-                          "display_name": "Excessive daytime sleepiness",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to get daytime sleepiness"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to get daytime sleepiness, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to get daytime sleepiness"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to get daytime sleepiness"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "body-fat-percentage": {
-                        "phenotype": {
-                          "url_name": "body-fat-percentage",
-                          "display_name": "Body fat percentage",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower fat percentage"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower fat percentage"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher fat percentage"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher fat percentage"
-                          }
-                        ],
-                        "summary": {
-                          "score": 1,
-                          "text": "Slightly lower fat percentage",
-                          "warnings": []
-                        }
-                      },
-                      "body-fat-mass": {
-                        "phenotype": {
-                          "url_name": "body-fat-mass",
-                          "display_name": "Body fat mass",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher"
-                          }
-                        ],
-                        "summary": {
-                          "score": 1,
-                          "text": "Slightly lower",
-                          "warnings": []
-                        }
-                      },
-                      "bmi": {
-                        "phenotype": {
-                          "url_name": "bmi",
-                          "display_name": "BMI",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher"
-                          }
-                        ],
-                        "summary": {
-                          "score": 1,
-                          "text": "Slightly lower",
-                          "warnings": []
-                        }
-                      },
-                      "weight": {
-                        "phenotype": {
-                          "url_name": "weight",
-                          "display_name": "Genetic weight",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to have heavy weight"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to have heavy weight, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to have heavy weight"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to have heavy weight"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "height": {
-                        "phenotype": {
-                          "url_name": "height",
-                          "display_name": "Height",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Shorter"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly shorter"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly taller"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Taller"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
-                      }
-                    }
-                    `;
-    let genome3 =   `
-                    {
-                      "caffeine-consumption": {
-                        "phenotype": {
-                          "url_name": "caffeine-consumption",
-                          "display_name": "Caffeine consumption",
-                          "category": "food_and_nutrition"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Less cup of coffee"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly less cup of coffee"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly more cup of coffee"
-                          },
-                          {
-                            "score": 4,
-                            "text": "More cup of coffee"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
-                      },
-                      "job-related-exhaustion": {
-                        "phenotype": {
-                          "url_name": "job-related-exhaustion",
-                          "display_name": "Job related exhaustion",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to be exhausted"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to be exhausted, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to be exhausted"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to be exhausted"
-                          }
-                        ],
-                        "summary": {
+                      "population": "european",
+                      "scores": [
+                        {
                           "score": 0,
-                          "text": "Tend not to be exhausted",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "excessive-daytime-sleepiness": {
-                        "phenotype": {
-                          "url_name": "excessive-daytime-sleepiness",
-                          "display_name": "Excessive daytime sleepiness",
-                          "category": "trait"
+                          "text": "Less cup of coffee"
                         },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to get daytime sleepiness"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to get daytime sleepiness, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to get daytime sleepiness"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to get daytime sleepiness"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "body-fat-mass": {
-                        "phenotype": {
-                          "url_name": "body-fat-mass",
-                          "display_name": "Body fat mass",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
-                      },
-                      "body-fat-percentage": {
-                        "phenotype": {
-                          "url_name": "body-fat-percentage",
-                          "display_name": "Body fat percentage",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower fat percentage"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower fat percentage"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher fat percentage"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher fat percentage"
-                          }
-                        ],
-                        "summary": {
-                          "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
-                        }
-                      },
-                      "bmi": {
-                        "phenotype": {
-                          "url_name": "bmi",
-                          "display_name": "BMI",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Lower"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly lower"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly higher"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Higher"
-                          }
-                        ],
-                        "summary": {
-                          "score": 3,
-                          "text": "Slightly higher",
-                          "warnings": []
-                        }
-                      },
-                      "weight": {
-                        "phenotype": {
-                          "url_name": "weight",
-                          "display_name": "Genetic weight",
-                          "category": "trait"
-                        },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Tend not to have heavy weight"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Tend not to have heavy weight, slightly"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slight tendency to have heavy weight"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Stronger tendency to have heavy weight"
-                          }
-                        ],
-                        "summary": {
+                        {
                           "score": 1,
-                          "text": "Tend not to have heavy weight, slightly",
-                          "warnings": [
-                            "reliability is low"
-                          ]
-                        }
-                      },
-                      "height": {
-                        "phenotype": {
-                          "url_name": "height",
-                          "display_name": "Height",
-                          "category": "trait"
+                          "text": "Slightly less cup of coffee"
                         },
-                        "population": "european",
-                        "scores": [
-                          {
-                            "score": 0,
-                            "text": "Shorter"
-                          },
-                          {
-                            "score": 1,
-                            "text": "Slightly shorter"
-                          },
-                          {
-                            "score": 2,
-                            "text": "Intermediate"
-                          },
-                          {
-                            "score": 3,
-                            "text": "Slightly taller"
-                          },
-                          {
-                            "score": 4,
-                            "text": "Taller"
-                          }
-                        ],
-                        "summary": {
+                        {
                           "score": 2,
-                          "text": "Intermediate",
-                          "warnings": []
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly more cup of coffee"
+                        },
+                        {
+                          "score": 4,
+                          "text": "More cup of coffee"
                         }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    },
+                    "job-related-exhaustion": {
+                      "phenotype": {
+                        "url_name": "job-related-exhaustion",
+                        "display_name": "Job related exhaustion",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to be exhausted"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to be exhausted, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to be exhausted"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to be exhausted"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "excessive-daytime-sleepiness": {
+                      "phenotype": {
+                        "url_name": "excessive-daytime-sleepiness",
+                        "display_name": "Excessive daytime sleepiness",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to get daytime sleepiness"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to get daytime sleepiness, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to get daytime sleepiness"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to get daytime sleepiness"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "body-fat-mass": {
+                      "phenotype": {
+                        "url_name": "body-fat-mass",
+                        "display_name": "Body fat mass",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    },
+                    "body-fat-percentage": {
+                      "phenotype": {
+                        "url_name": "body-fat-percentage",
+                        "display_name": "Body fat percentage",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower fat percentage"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower fat percentage"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher fat percentage"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher fat percentage"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    },
+                    "bmi": {
+                      "phenotype": {
+                        "url_name": "bmi",
+                        "display_name": "BMI",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher"
+                        }
+                      ],
+                      "summary": {
+                        "score": 3,
+                        "text": "Slightly higher",
+                        "warnings": []
+                      }
+                    },
+                    "weight": {
+                      "phenotype": {
+                        "url_name": "weight",
+                        "display_name": "Genetic weight",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to have heavy weight"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to have heavy weight, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to have heavy weight"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to have heavy weight"
+                        }
+                      ],
+                      "summary": {
+                        "score": 1,
+                        "text": "Tend not to have heavy weight, slightly",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "height": {
+                      "phenotype": {
+                        "url_name": "height",
+                        "display_name": "Height",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Shorter"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly shorter"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly taller"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Taller"
+                        }
+                      ],
+                      "summary": {
+                        "score": 1,
+                        "text": "Slightly shorter",
+                        "warnings": []
                       }
                     }
-                    `;
-    return (id=='Sample1') ? genome1 : (id=='Sample2') ? genome2 : genome3;
+                  }
+                  `;
+  let genome2 =   `
+                  {
+                    "caffeine-consumption": {
+                      "phenotype": {
+                        "url_name": "caffeine-consumption",
+                        "display_name": "Caffeine consumption",
+                        "category": "food_and_nutrition"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Less cup of coffee"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly less cup of coffee"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly more cup of coffee"
+                        },
+                        {
+                          "score": 4,
+                          "text": "More cup of coffee"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    },
+                    "job-related-exhaustion": {
+                      "phenotype": {
+                        "url_name": "job-related-exhaustion",
+                        "display_name": "Job related exhaustion",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to be exhausted"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to be exhausted, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to be exhausted"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to be exhausted"
+                        }
+                      ],
+                      "summary": {
+                        "score": 4,
+                        "text": "Stronger tendency to be exhausted",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "excessive-daytime-sleepiness": {
+                      "phenotype": {
+                        "url_name": "excessive-daytime-sleepiness",
+                        "display_name": "Excessive daytime sleepiness",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to get daytime sleepiness"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to get daytime sleepiness, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to get daytime sleepiness"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to get daytime sleepiness"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "body-fat-percentage": {
+                      "phenotype": {
+                        "url_name": "body-fat-percentage",
+                        "display_name": "Body fat percentage",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower fat percentage"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower fat percentage"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher fat percentage"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher fat percentage"
+                        }
+                      ],
+                      "summary": {
+                        "score": 1,
+                        "text": "Slightly lower fat percentage",
+                        "warnings": []
+                      }
+                    },
+                    "body-fat-mass": {
+                      "phenotype": {
+                        "url_name": "body-fat-mass",
+                        "display_name": "Body fat mass",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher"
+                        }
+                      ],
+                      "summary": {
+                        "score": 1,
+                        "text": "Slightly lower",
+                        "warnings": []
+                      }
+                    },
+                    "bmi": {
+                      "phenotype": {
+                        "url_name": "bmi",
+                        "display_name": "BMI",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher"
+                        }
+                      ],
+                      "summary": {
+                        "score": 1,
+                        "text": "Slightly lower",
+                        "warnings": []
+                      }
+                    },
+                    "weight": {
+                      "phenotype": {
+                        "url_name": "weight",
+                        "display_name": "Genetic weight",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to have heavy weight"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to have heavy weight, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to have heavy weight"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to have heavy weight"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "height": {
+                      "phenotype": {
+                        "url_name": "height",
+                        "display_name": "Height",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Shorter"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly shorter"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly taller"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Taller"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    }
+                  }
+                  `;
+  let genome3 =   `
+                  {
+                    "caffeine-consumption": {
+                      "phenotype": {
+                        "url_name": "caffeine-consumption",
+                        "display_name": "Caffeine consumption",
+                        "category": "food_and_nutrition"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Less cup of coffee"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly less cup of coffee"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly more cup of coffee"
+                        },
+                        {
+                          "score": 4,
+                          "text": "More cup of coffee"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    },
+                    "job-related-exhaustion": {
+                      "phenotype": {
+                        "url_name": "job-related-exhaustion",
+                        "display_name": "Job related exhaustion",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to be exhausted"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to be exhausted, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to be exhausted"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to be exhausted"
+                        }
+                      ],
+                      "summary": {
+                        "score": 0,
+                        "text": "Tend not to be exhausted",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "excessive-daytime-sleepiness": {
+                      "phenotype": {
+                        "url_name": "excessive-daytime-sleepiness",
+                        "display_name": "Excessive daytime sleepiness",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to get daytime sleepiness"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to get daytime sleepiness, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to get daytime sleepiness"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to get daytime sleepiness"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "body-fat-mass": {
+                      "phenotype": {
+                        "url_name": "body-fat-mass",
+                        "display_name": "Body fat mass",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    },
+                    "body-fat-percentage": {
+                      "phenotype": {
+                        "url_name": "body-fat-percentage",
+                        "display_name": "Body fat percentage",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower fat percentage"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower fat percentage"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher fat percentage"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher fat percentage"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    },
+                    "bmi": {
+                      "phenotype": {
+                        "url_name": "bmi",
+                        "display_name": "BMI",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Lower"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly lower"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly higher"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Higher"
+                        }
+                      ],
+                      "summary": {
+                        "score": 3,
+                        "text": "Slightly higher",
+                        "warnings": []
+                      }
+                    },
+                    "weight": {
+                      "phenotype": {
+                        "url_name": "weight",
+                        "display_name": "Genetic weight",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Tend not to have heavy weight"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Tend not to have heavy weight, slightly"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slight tendency to have heavy weight"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Stronger tendency to have heavy weight"
+                        }
+                      ],
+                      "summary": {
+                        "score": 1,
+                        "text": "Tend not to have heavy weight, slightly",
+                        "warnings": [
+                          "reliability is low"
+                        ]
+                      }
+                    },
+                    "height": {
+                      "phenotype": {
+                        "url_name": "height",
+                        "display_name": "Height",
+                        "category": "trait"
+                      },
+                      "population": "european",
+                      "scores": [
+                        {
+                          "score": 0,
+                          "text": "Shorter"
+                        },
+                        {
+                          "score": 1,
+                          "text": "Slightly shorter"
+                        },
+                        {
+                          "score": 2,
+                          "text": "Intermediate"
+                        },
+                        {
+                          "score": 3,
+                          "text": "Slightly taller"
+                        },
+                        {
+                          "score": 4,
+                          "text": "Taller"
+                        }
+                      ],
+                      "summary": {
+                        "score": 2,
+                        "text": "Intermediate",
+                        "warnings": []
+                      }
+                    }
+                  }
+                  `;
+  let ret = (JSON.parse((id=='Sample1') ? genome1 : (id=='Sample2') ? genome2 : genome3));
+  return ret;
 }
 
 
 
 
-function updatePts() {
+async function updatePts() {
 
 
   // reset deltas
@@ -1177,8 +1176,7 @@ function updatePts() {
 
 
 
-
-  genomeData = JSON.parse(getGenomeData(Design.inputState['genome-id']));
+  genomeData = await getGenomeData(Design.inputState['genome-id']);
 
   let height_score = genomeData.height.summary.score;
   let ht_sc = map_range(height_score, 0, 5, 0, 1);
@@ -1520,7 +1518,7 @@ Design.updateGeom = async function(group, params, sliceManager) {
 
 
   this.inputState = params;
-  updatePts();
+  await updatePts();
 
 
 
@@ -1619,8 +1617,8 @@ Design.updateGeom = async function(group, params, sliceManager) {
 
 
 	var side_shp = new THREE.Shape();
-    side_shp.moveTo(o_bs_pts[0][1], o_bs_pts[0][2]);
-    side_shp.lineTo(o_bs_pts[2][1], o_bs_pts[2][2]);
+  side_shp.moveTo(o_bs_pts[0][1], o_bs_pts[0][2]);
+  side_shp.lineTo(o_bs_pts[2][1], o_bs_pts[2][2]);
 	for(let i=0; i<1; i+=0.05) { let p = o_bk_crv.point(i); side_shp.lineTo(p[1], p[2]); }
 	for(let i=0; i<1; i+=0.05) { let p = o_tp_crv.point(i); side_shp.lineTo(p[1], p[2]); }
 	for(let i=0; i<1; i+=0.05) { let p = o_st_crv.point(i); side_shp.lineTo(p[1], p[2]); }
