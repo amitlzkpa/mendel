@@ -250,62 +250,64 @@ async function updatePts() {
 
   var age = Design.inputState.age;
   var sc = map_range(age, 18, 40, 1, 0);
+  var ageHeightRange = 90;
+  var ageWidthRange = 60;
 
   // height changes
-  m_bk_pts_delta[2][1] -= sc * 60;
-  m_tp_pts_delta[0][1] -= sc * 60;
-  m_tp_pts_delta[1][1] -= sc * 60;
-  m_tp_pts_delta[2][1] -= sc * 60;
-  m_sp_pts_delta[0][1] -= sc * 60;
-  m_sp_pts_delta[1][1] -= sc * 60;
-  m_sp_pts_delta[2][1] -= sc * 60;
-  m_st_pts_delta[0][1] -= sc * 60;
-  m_st_pts_delta[1][1] -= sc * 60;
-  m_st_pts_delta[2][1] -= sc * 60;
-  m_ft_pts_delta[0][1] -= sc * 60;
-  m_ft_pts_delta[1][1] -= sc * 60;
+  m_bk_pts_delta[2][1] -= sc * ageHeightRange;
+  m_tp_pts_delta[0][1] -= sc * ageHeightRange;
+  m_tp_pts_delta[1][1] -= sc * ageHeightRange;
+  m_tp_pts_delta[2][1] -= sc * ageHeightRange;
+  m_sp_pts_delta[0][1] -= sc * ageHeightRange;
+  m_sp_pts_delta[1][1] -= sc * ageHeightRange;
+  m_sp_pts_delta[2][1] -= sc * ageHeightRange;
+  m_st_pts_delta[0][1] -= sc * ageHeightRange;
+  m_st_pts_delta[1][1] -= sc * ageHeightRange;
+  m_st_pts_delta[2][1] -= sc * ageHeightRange;
+  m_ft_pts_delta[0][1] -= sc * ageHeightRange;
+  m_ft_pts_delta[1][1] -= sc * ageHeightRange;
 
-  o_bk_pts_delta[2][1] -= sc * 60;
-  o_tp_pts_delta[0][1] -= sc * 60;
-  o_tp_pts_delta[1][1] -= sc * 60;
-  o_tp_pts_delta[2][1] -= sc * 60;
-  o_sp_pts_delta[0][1] -= sc * 60;
-  o_sp_pts_delta[1][1] -= sc * 60;
-  o_sp_pts_delta[2][1] -= sc * 60;
-  o_st_pts_delta[0][1] -= sc * 60;
-  o_st_pts_delta[1][1] -= sc * 60;
-  o_st_pts_delta[2][1] -= sc * 60;
-  o_ft_pts_delta[0][1] -= sc * 60;
-  o_ft_pts_delta[1][1] -= sc * 60;
+  o_bk_pts_delta[2][1] -= sc * ageHeightRange;
+  o_tp_pts_delta[0][1] -= sc * ageHeightRange;
+  o_tp_pts_delta[1][1] -= sc * ageHeightRange;
+  o_tp_pts_delta[2][1] -= sc * ageHeightRange;
+  o_sp_pts_delta[0][1] -= sc * ageHeightRange;
+  o_sp_pts_delta[1][1] -= sc * ageHeightRange;
+  o_sp_pts_delta[2][1] -= sc * ageHeightRange;
+  o_st_pts_delta[0][1] -= sc * ageHeightRange;
+  o_st_pts_delta[1][1] -= sc * ageHeightRange;
+  o_st_pts_delta[2][1] -= sc * ageHeightRange;
+  o_ft_pts_delta[0][1] -= sc * ageHeightRange;
+  o_ft_pts_delta[1][1] -= sc * ageHeightRange;
 
-  o_bk_pts_mirr_delta[2][1] -= sc * 60;
-  o_tp_pts_mirr_delta[0][1] -= sc * 60;
-  o_tp_pts_mirr_delta[1][1] -= sc * 60;
-  o_tp_pts_mirr_delta[2][1] -= sc * 60;
-  o_sp_pts_mirr_delta[0][1] -= sc * 60;
-  o_sp_pts_mirr_delta[1][1] -= sc * 60;
-  o_sp_pts_mirr_delta[2][1] -= sc * 60;
-  o_st_pts_mirr_delta[0][1] -= sc * 60;
-  o_st_pts_mirr_delta[1][1] -= sc * 60;
-  o_st_pts_mirr_delta[2][1] -= sc * 60;
-  o_ft_pts_mirr_delta[0][1] -= sc * 60;
-  o_ft_pts_mirr_delta[1][1] -= sc * 60;
+  o_bk_pts_mirr_delta[2][1] -= sc * ageHeightRange;
+  o_tp_pts_mirr_delta[0][1] -= sc * ageHeightRange;
+  o_tp_pts_mirr_delta[1][1] -= sc * ageHeightRange;
+  o_tp_pts_mirr_delta[2][1] -= sc * ageHeightRange;
+  o_sp_pts_mirr_delta[0][1] -= sc * ageHeightRange;
+  o_sp_pts_mirr_delta[1][1] -= sc * ageHeightRange;
+  o_sp_pts_mirr_delta[2][1] -= sc * ageHeightRange;
+  o_st_pts_mirr_delta[0][1] -= sc * ageHeightRange;
+  o_st_pts_mirr_delta[1][1] -= sc * ageHeightRange;
+  o_st_pts_mirr_delta[2][1] -= sc * ageHeightRange;
+  o_ft_pts_mirr_delta[0][1] -= sc * ageHeightRange;
+  o_ft_pts_mirr_delta[1][1] -= sc * ageHeightRange;
 
 
   // width
-  o_bs_pts_delta.forEach((d, i) => { d[0] += sc * 40; });
-  o_bk_pts_delta.forEach((d, i) => { d[0] += sc * 40; });
-  o_tp_pts_delta.forEach((d, i) => { d[0] += sc * 40; });
-  o_sp_pts_delta.forEach((d, i) => { d[0] += sc * 40; });
-  o_st_pts_delta.forEach((d, i) => { d[0] += sc * 40; });
-  o_ft_pts_delta.forEach((d, i) => { d[0] += sc * 40; });
+  o_bs_pts_delta.forEach((d, i) => { d[0] += sc * ageWidthRange; });
+  o_bk_pts_delta.forEach((d, i) => { d[0] += sc * ageWidthRange; });
+  o_tp_pts_delta.forEach((d, i) => { d[0] += sc * ageWidthRange; });
+  o_sp_pts_delta.forEach((d, i) => { d[0] += sc * ageWidthRange; });
+  o_st_pts_delta.forEach((d, i) => { d[0] += sc * ageWidthRange; });
+  o_ft_pts_delta.forEach((d, i) => { d[0] += sc * ageWidthRange; });
 
-  o_bs_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * 40; });
-  o_bk_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * 40; });
-  o_tp_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * 40; });
-  o_sp_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * 40; });
-  o_st_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * 40; });
-  o_ft_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * 40; });
+  o_bs_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * ageWidthRange; });
+  o_bk_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * ageWidthRange; });
+  o_tp_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * ageWidthRange; });
+  o_sp_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * ageWidthRange; });
+  o_st_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * ageWidthRange; });
+  o_ft_pts_mirr_delta.forEach((d, i) => { d[0] -= sc * ageWidthRange; });
 
 
 
@@ -317,46 +319,47 @@ async function updatePts() {
 
   let height_score = genomeData.height.summary.score;
   let ht_sc = map_range(height_score, 0, 5, 0, 1);
+  let htLeanRange = 300;
 
   // height attenuation
-  m_bs_pts_delta[0][2] -= ht_sc * 100;
-  m_bk_pts_delta[1][2] += ht_sc * 60;
-  m_bk_pts_delta[2][2] += ht_sc * 240;
-  m_tp_pts_delta[0][2] += ht_sc * 240;
-  m_tp_pts_delta[1][2] += ht_sc * 240;
-  m_tp_pts_delta[2][2] += ht_sc * 240;
-  m_sp_pts_delta[0][2] += ht_sc * 240;
-  m_sp_pts_delta[1][2] += ht_sc * 240;
-  m_sp_pts_delta[2][2] += ht_sc * 60;
-  m_st_pts_delta[0][2] += ht_sc * 60;
-  m_st_pts_delta[2][2] -= ht_sc * 60;
-  m_ft_pts_delta[0][2] -= ht_sc * 60;
-  m_ft_pts_delta[1][2] -= ht_sc * 60;
-  m_ft_pts_delta[2][2] -= ht_sc * 100;
+  m_bs_pts_delta[0][2] -= ht_sc * htLeanRange / 2;
+  m_bk_pts_delta[1][2] += ht_sc * htLeanRange / 4;
+  m_bk_pts_delta[2][2] += ht_sc * htLeanRange;
+  m_tp_pts_delta[0][2] += ht_sc * htLeanRange;
+  m_tp_pts_delta[1][2] += ht_sc * htLeanRange;
+  m_tp_pts_delta[2][2] += ht_sc * htLeanRange;
+  m_sp_pts_delta[0][2] += ht_sc * htLeanRange;
+  m_sp_pts_delta[1][2] += ht_sc * htLeanRange;
+  m_sp_pts_delta[2][2] += ht_sc * htLeanRange / 4;
+  m_st_pts_delta[0][2] += ht_sc * htLeanRange / 4;
+  m_st_pts_delta[2][2] -= ht_sc * htLeanRange / 4;
+  m_ft_pts_delta[0][2] -= ht_sc * htLeanRange / 4;
+  m_ft_pts_delta[1][2] -= ht_sc * htLeanRange / 4;
+  m_ft_pts_delta[2][2] -= ht_sc * htLeanRange / 2;
 
-  o_bs_pts_delta[0][2] -= ht_sc * 100;
-  o_bs_pts_delta[2][2] += ht_sc * 10;
-  o_bk_pts_delta[0][2] += ht_sc * 10;
-  o_bk_pts_delta[1][2] += ht_sc * 120;
-  o_bk_pts_delta[2][2] += ht_sc * 120;
-  o_tp_pts_delta[0][2] += ht_sc * 120;
-  o_tp_pts_delta[1][2] += ht_sc * 120;
-  o_tp_pts_delta[2][2] += ht_sc * 120;
-  o_sp_pts_delta[0][2] += ht_sc * 120;
-  o_sp_pts_delta[1][2] += ht_sc * 90;
-  o_ft_pts_delta[2][2] -= ht_sc * 100;
+  o_bs_pts_delta[0][2] -= ht_sc * htLeanRange / 2;
+  o_bs_pts_delta[2][2] += ht_sc * htLeanRange / 10;
+  o_bk_pts_delta[0][2] += ht_sc * htLeanRange / 10;
+  o_bk_pts_delta[1][2] += ht_sc * htLeanRange / 2;
+  o_bk_pts_delta[2][2] += ht_sc * htLeanRange / 2;
+  o_tp_pts_delta[0][2] += ht_sc * htLeanRange / 2;
+  o_tp_pts_delta[1][2] += ht_sc * htLeanRange / 2;
+  o_tp_pts_delta[2][2] += ht_sc * htLeanRange / 2;
+  o_sp_pts_delta[0][2] += ht_sc * htLeanRange / 2;
+  o_sp_pts_delta[1][2] += ht_sc * htLeanRange / 2;
+  o_ft_pts_delta[2][2] -= ht_sc * htLeanRange / 2;
 
-  o_bs_pts_mirr_delta[0][2] -= ht_sc * 100;
-  o_bs_pts_mirr_delta[2][2] += ht_sc * 10;
-  o_bk_pts_mirr_delta[0][2] += ht_sc * 10;
-  o_bk_pts_mirr_delta[1][2] += ht_sc * 120;
-  o_bk_pts_mirr_delta[2][2] += ht_sc * 120;
-  o_tp_pts_mirr_delta[0][2] += ht_sc * 120;
-  o_tp_pts_mirr_delta[1][2] += ht_sc * 120;
-  o_tp_pts_mirr_delta[2][2] += ht_sc * 120;
-  o_sp_pts_mirr_delta[0][2] += ht_sc * 120;
-  o_sp_pts_mirr_delta[1][2] += ht_sc * 90;
-  o_ft_pts_mirr_delta[2][2] -= ht_sc * 100;
+  o_bs_pts_mirr_delta[0][2] -= ht_sc * htLeanRange / 2;
+  o_bs_pts_mirr_delta[2][2] += ht_sc * htLeanRange / 10;
+  o_bk_pts_mirr_delta[0][2] += ht_sc * htLeanRange / 10;
+  o_bk_pts_mirr_delta[1][2] += ht_sc * htLeanRange / 2;
+  o_bk_pts_mirr_delta[2][2] += ht_sc * htLeanRange / 2;
+  o_tp_pts_mirr_delta[0][2] += ht_sc * htLeanRange / 2;
+  o_tp_pts_mirr_delta[1][2] += ht_sc * htLeanRange / 2;
+  o_tp_pts_mirr_delta[2][2] += ht_sc * htLeanRange / 2;
+  o_sp_pts_mirr_delta[0][2] += ht_sc * htLeanRange / 2;
+  o_sp_pts_mirr_delta[1][2] += ht_sc * htLeanRange / 2;
+  o_ft_pts_mirr_delta[2][2] -= ht_sc * htLeanRange / 2;
 
 
 
@@ -371,36 +374,37 @@ async function updatePts() {
   let bodyfatmass_score = genomeData['body-fat-mass'].summary.score;
 
   let mass_sc = map_range(((weight_score+bmi_score+bodyfatmass_score)/3), 0, 5, 0, 1);
+  let massWidthRange = 60;
 
   // width
-  o_bs_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
-  o_bk_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
-  o_tp_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
-  o_sp_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
-  o_st_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
-  o_ft_pts_delta.forEach((d, i) => { d[0] += mass_sc * 40; });
+  o_bs_pts_delta.forEach((d, i) => { d[0] += mass_sc * massWidthRange; });
+  o_bk_pts_delta.forEach((d, i) => { d[0] += mass_sc * massWidthRange; });
+  o_tp_pts_delta.forEach((d, i) => { d[0] += mass_sc * massWidthRange; });
+  o_sp_pts_delta.forEach((d, i) => { d[0] += mass_sc * massWidthRange; });
+  o_st_pts_delta.forEach((d, i) => { d[0] += mass_sc * massWidthRange; });
+  o_ft_pts_delta.forEach((d, i) => { d[0] += mass_sc * massWidthRange; });
 
-  o_bs_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
-  o_bk_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
-  o_tp_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
-  o_sp_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
-  o_st_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
-  o_ft_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * 40; });
+  o_bs_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * massWidthRange; });
+  o_bk_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * massWidthRange; });
+  o_tp_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * massWidthRange; });
+  o_sp_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * massWidthRange; });
+  o_st_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * massWidthRange; });
+  o_ft_pts_mirr_delta.forEach((d, i) => { d[0] -= mass_sc * massWidthRange; });
 
   // seat curvarture
-  m_bk_pts_delta[1][2] += mass_sc * 30;
-  m_bk_pts_delta[2][2] += mass_sc * 30;
-  m_tp_pts_delta[0][2] += mass_sc * 30;
-  m_tp_pts_delta[1][2] += mass_sc * 30;
-  m_tp_pts_delta[2][2] += mass_sc * 30;
-  m_sp_pts_delta[0][2] += mass_sc * 30;
-  m_sp_pts_delta[1][2] += mass_sc * 30;
-  m_sp_pts_delta[2][1] -= mass_sc * 30;
-  m_st_pts_delta[0][1] -= mass_sc * 30;
-  m_st_pts_delta[1][1] -= mass_sc * 30;
-  m_st_pts_delta[2][1] -= mass_sc * 30;
-  m_ft_pts_delta[0][1] -= mass_sc * 30;
-  m_ft_pts_delta[1][1] -= mass_sc * 30;
+  m_bk_pts_delta[1][2] += mass_sc * massWidthRange / 2;
+  m_bk_pts_delta[2][2] += mass_sc * massWidthRange / 2;
+  m_tp_pts_delta[0][2] += mass_sc * massWidthRange / 2;
+  m_tp_pts_delta[1][2] += mass_sc * massWidthRange / 2;
+  m_tp_pts_delta[2][2] += mass_sc * massWidthRange / 2;
+  m_sp_pts_delta[0][2] += mass_sc * massWidthRange / 2;
+  m_sp_pts_delta[1][2] += mass_sc * massWidthRange / 2;
+  m_sp_pts_delta[2][1] -= mass_sc * massWidthRange / 2;
+  m_st_pts_delta[0][1] -= mass_sc * massWidthRange / 2;
+  m_st_pts_delta[1][1] -= mass_sc * massWidthRange / 2;
+  m_st_pts_delta[2][1] -= mass_sc * massWidthRange / 2;
+  m_ft_pts_delta[0][1] -= mass_sc * massWidthRange / 2;
+  m_ft_pts_delta[1][1] -= mass_sc * massWidthRange / 2;
 
 
 
