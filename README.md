@@ -1,7 +1,7 @@
 ###### O-LAP Design Page
 ###### Code and design for [O-LAP](https://o-lap.com)  
 ---
-![image alt-text](image-url)
+![Mendel](https://raw.githubusercontent.com/amitlzkpa/mendel/master/design/display.jpg)
 # Mendel  
 ###### Reading chair with a personality.  
 ---
