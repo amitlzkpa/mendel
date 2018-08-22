@@ -661,6 +661,7 @@ Design.updateGeom = async function(group, params, sliceManager) {
   this.inputState = params;
   await updatePts();
 
+  console.log(this.inputState);
 
 
 	var obj = new THREE.Object3D();
@@ -774,6 +775,8 @@ Design.updateGeom = async function(group, params, sliceManager) {
 	sideB.rotation.set(Math.PI / 2, Math.PI / 2, 0);
 	sideB.position.x = -(o_bs_pts[0][0]);
 	obj.add(sideB);
+
+  console.log(sliceManager);
 
 	if(doublebedSlicingOn) {
 		sliceManager.addSliceSet({uDir: true, start: -800, end: 800, cuts: 14});
