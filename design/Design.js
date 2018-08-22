@@ -661,8 +661,8 @@ Design.updateGeom = async function(group, params, sliceManager) {
   this.inputState = params;
   await updatePts();
 
+  console.log(group);
   console.log(this.inputState);
-
 
 	var obj = new THREE.Object3D();
 
