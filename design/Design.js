@@ -1,4 +1,7 @@
 
+let mockJSON = '{"token":"123456","report":{"bmi":{"phenotype":{"url_name":"bmi","display_name":"BMI","category":"trait"},"population":"european","scores":[{"score":0,"text":"Lower"},{"score":1,"text":"Slightlylower"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightlyhigher"},{"score":4,"text":"Higher"}],"summary":{"score":0,"text":"Lower","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata"]}},"body-fat-mass":{"phenotype":{"url_name":"body-fat-mass","display_name":"Bodyfatmass","category":"trait"},"population":"european","scores":[{"score":0,"text":"Lowerfatmass"},{"score":1,"text":"Slightlylower"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightlyhigher"},{"score":4,"text":"Higherfatmass"}],"summary":{"score":1,"text":"Slightlylower","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata"]}},"body-fat-percentage":{"phenotype":{"url_name":"body-fat-percentage","display_name":"Bodyfatpercentage","category":"trait"},"population":"european","scores":[{"score":0,"text":"Lessbodyfat"},{"score":1,"text":"Slightlylowerfatpercentage"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightlyhigherfatpercentage"},{"score":4,"text":"Morebodyfat"}],"summary":{"score":3,"text":"Slightlyhigherfatpercentage","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata"]}},"caffeine-consumption":{"phenotype":{"url_name":"caffeine-consumption","display_name":"Caffeineconsumption","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lessconsumption"},{"score":1,"text":"Slightlylesscupofcoffee"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightlymorecupofcoffee"},{"score":4,"text":"Moreconsumption"}],"summary":{"score":1,"text":"Slightlylesscupofcoffee","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata"]}},"excessive-daytime-sleepiness":{"phenotype":{"url_name":"excessive-daytime-sleepiness","display_name":"Excessivedaytimesleepiness","category":"trait"},"population":"european","scores":[{"score":0,"text":"Lessdaytimesleepiness"},{"score":1,"text":"Tendnottogetdaytimesleepiness,slightly"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slighttendencytogetdaytimesleepiness"},{"score":4,"text":"Moredaytimesleepiness"}],"summary":{"score":1,"text":"Tendnottogetdaytimesleepiness,slightly","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata","reliabilityislow"]}},"height":{"phenotype":{"url_name":"height","display_name":"Height","category":"trait"},"population":"european","scores":[{"score":0,"text":"Shorter"},{"score":1,"text":"Slightlyshorter"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightlytaller"},{"score":4,"text":"Taller"}],"summary":{"score":2,"text":"Intermediate","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata"]}},"job-related-exhaustion":{"phenotype":{"url_name":"job-related-exhaustion","display_name":"Jobrelatedexhaustion","category":"trait"},"population":"european","scores":[{"score":0,"text":"Lessjob-relatedexhaustion"},{"score":1,"text":"Tendnottobeexhausted,slightly"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slighttendencytobeexhausted"},{"score":4,"text":"Morejob-relatedexhaustion"}],"summary":{"score":0,"text":"Lessjob-relatedexhaustion","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata"]}},"weight":{"phenotype":{"url_name":"weight","display_name":"Geneticweight","category":"trait"},"population":"european","scores":[{"score":0,"text":"Lowerbodyweight"},{"score":1,"text":"Tendnottohaveheavyweight,slightly"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slighttendencytohaveheavyweight"},{"score":4,"text":"Higherbodyweight"}],"summary":{"score":2,"text":"Intermediate","warnings":["thisisDEMOdatabecausethisuserdoesnothavegenomedata","reliabilityislow"]}}},"id":4}';
+
+
 
 //-----------------------------------------------------------------------------
 
@@ -64,7 +67,7 @@ Design.inputs = {
 	"genome-id": {
     "type": "text",
 		"label": "Genome ID",
-    "tip": "Go to <a href='https://genomedb.herokuapp.com/' target='_blank'>genomedb.herokuapp.com</a> to submit your genome data.",
+    "tip": "Go to <a href='https://olap-genomelink.herokuapp.com/' target='_blank'>olap-genomelink.herokuapp.com</a> to submit your genome data. Use '123456' to try it out.",
 	}
 }
 
@@ -72,7 +75,7 @@ Design.inputs = {
 //-----------------------------------------------------------------------------
 
 
-var genomeData = null;
+var genomeData = JSON.parse(mockJSON).report;
 
 
 //-----------------------------------------------------------------------------
@@ -109,14 +112,17 @@ function getAgeMul(age) {
 
 
 
-async function getGenomeData(id='test-user-1') {
+async function getGenomeData(id) {
   let geneData = {};
   try {
-    geneData = await $.get(`https://genomedb.herokuapp.com/${id}`);
+    geneData = (await $.get(`https://genomedb.herokuapp.com/reports?token=${id}`))[0];
+    if (geneData == null || geneData.length == 0) {
+      throw "Invalid genetic data";
+    }
   }
   catch (err) {
     console.log(`No genetic data found. Loading mock data`);
-    geneData = await $.get(`https://genomedb.herokuapp.com/test-user-1`);
+    geneData = JSON.parse(mockJSON);
   }
   return geneData;
 }
@@ -314,8 +320,9 @@ async function updatePts() {
   // --------------------------------------------
 
 
-
-  genomeData = await getGenomeData(Design.inputState['genome-id']);
+  if (typeof Design.inputState['genome-id'] !== 'undefined' && Design.inputState['genome-id'].length >= 6) {
+    genomeData = (await getGenomeData(Design.inputState['genome-id'])).report;
+  }
 
   let height_score = genomeData.height.summary.score;
   let ht_sc = map_range(height_score, 0, 5, 0, 1);
