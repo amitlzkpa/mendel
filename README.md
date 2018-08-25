@@ -40,4 +40,7 @@ The age parameter adjusts the seat height and width. The comfort level affects h
 * Weight
 * Height
 
-The design is passed into the O-LAP framework to extract the design drawings. Read about that [here](https://github.com/O-LAP/home).
+The design is passed into the O-LAP framework to extract the design drawings. Read about that [here](https://github.com/O-LAP/home).  
+
+
+*Big thanks to my friend Narhari Banavlikar for the help with sketches.*
