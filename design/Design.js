@@ -662,10 +662,9 @@ Design.init = async function() {
  *									at the end. Called after parameters are 
  *									updated
  */
-Design.updateGeom = async function(group, params, sliceManager) {
+Design.updateGeom = async function(group, sliceManager) {
 
 
-  this.inputState = params;
   await updatePts();
 
 	var obj = new THREE.Object3D();
