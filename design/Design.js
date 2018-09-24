@@ -67,7 +67,7 @@ Design.inputs = {
 	"genome-id": {
     "type": "text",
 		"label": "Genome ID",
-    "tip": "Go to <a href='https://olap-genomelink.herokuapp.com/' target='_blank'>olap-genomelink.herokuapp.com</a> to submit your genome data. Use '123456' to try it out.",
+    "tip": "Read about it <a href='https://github.com/amitlzkpa/mendel' target='_blank'>here</a>. Go to <a href='https://olap-genomelink.herokuapp.com/' target='_blank'>olap-genomelink.herokuapp.com</a> to submit your genome data. Use '123456' to try it out.",
 	}
 }
 

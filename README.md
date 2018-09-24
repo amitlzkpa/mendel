@@ -7,7 +7,9 @@
 ---
 
 This document describes the design logic for a script which creates furniture designs customised for a person using their genetic information.  
-You can read about the project [here](https://o-lap.com).  
+It uses uses the services and information provided by [geomelink.io](https://geomelink.io). It was developed as part of a hackathon and is a proof of concept for the idea of design customized with a person's genetic information.   
+You can submit your data at the following link if you have used genomelink's services and would like to customise the furniture with your genetic information.  
+**Submit you data:** [https://olap-genomelink.herokuapp.com/](https://olap-genomelink.herokuapp.com/)  
 
 ## [DEMO](https://o-lap.org/app.html?a=amitlzkpa&r=o-lap_mendel)
 The design is a script that accepts inputs from users and uses an internal algorithm to create vector drawings which can be used to make the design from plywood. The fabricated pieces interlock into each other and can be assembled easily.  
