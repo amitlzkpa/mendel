@@ -671,78 +671,78 @@ Design.updateGeom = async function(group, sliceManager) {
 
 
 	// add curves
-	var m_bs = verb.geom.NurbsCurve.byPoints( m_bs_pts, 2 );
-	var m_bk = verb.geom.NurbsCurve.byPoints( m_bk_pts, 2 );
-	var m_tp = verb.geom.NurbsCurve.byPoints( m_tp_pts, 2 );
-  var m_sp = verb.geom.NurbsCurve.byPoints( m_sp_pts, 2 );
-	var m_st = verb.geom.NurbsCurve.byPoints( m_st_pts, 2 );
-	var m_ft = verb.geom.NurbsCurve.byPoints( m_ft_pts, 2 );
+	var m_bs = verb.geom.NurbsCurve.byPoints( m_bs_pts, 1 );
+	var m_bk = verb.geom.NurbsCurve.byPoints( m_bk_pts, 1 );
+	var m_tp = verb.geom.NurbsCurve.byPoints( m_tp_pts, 1 );
+  var m_sp = verb.geom.NurbsCurve.byPoints( m_sp_pts, 1 );
+	var m_st = verb.geom.NurbsCurve.byPoints( m_st_pts, 1 );
+	var m_ft = verb.geom.NurbsCurve.byPoints( m_ft_pts, 1 );
 
-	var o_bs = verb.geom.NurbsCurve.byPoints( o_bs_pts, 2 );
-	var o_bk = verb.geom.NurbsCurve.byPoints( o_bk_pts, 2 );
-	var o_tp = verb.geom.NurbsCurve.byPoints( o_tp_pts, 2 );
-  var o_sp = verb.geom.NurbsCurve.byPoints( o_sp_pts, 2 );
-	var o_st = verb.geom.NurbsCurve.byPoints( o_st_pts, 2 );
-	var o_ft = verb.geom.NurbsCurve.byPoints( o_ft_pts, 2 );
+	var o_bs = verb.geom.NurbsCurve.byPoints( o_bs_pts, 1 );
+	var o_bk = verb.geom.NurbsCurve.byPoints( o_bk_pts, 1 );
+	var o_tp = verb.geom.NurbsCurve.byPoints( o_tp_pts, 1 );
+  var o_sp = verb.geom.NurbsCurve.byPoints( o_sp_pts, 1 );
+	var o_st = verb.geom.NurbsCurve.byPoints( o_st_pts, 1 );
+	var o_ft = verb.geom.NurbsCurve.byPoints( o_ft_pts, 1 );
 
-	var o_bs_mirr = verb.geom.NurbsCurve.byPoints( o_bs_pts_mirr, 2 );
-	var o_bk_mirr = verb.geom.NurbsCurve.byPoints( o_bk_pts_mirr, 2 );
-	var o_tp_mirr = verb.geom.NurbsCurve.byPoints( o_tp_pts_mirr, 2 );
-  var o_sp_mirr = verb.geom.NurbsCurve.byPoints( o_sp_pts_mirr, 2 );
-	var o_st_mirr = verb.geom.NurbsCurve.byPoints( o_st_pts_mirr, 2 );
-	var o_ft_mirr = verb.geom.NurbsCurve.byPoints( o_ft_pts_mirr, 2 );
+	var o_bs_mirr = verb.geom.NurbsCurve.byPoints( o_bs_pts_mirr, 1 );
+	var o_bk_mirr = verb.geom.NurbsCurve.byPoints( o_bk_pts_mirr, 1 );
+	var o_tp_mirr = verb.geom.NurbsCurve.byPoints( o_tp_pts_mirr, 1 );
+  var o_sp_mirr = verb.geom.NurbsCurve.byPoints( o_sp_pts_mirr, 1 );
+	var o_st_mirr = verb.geom.NurbsCurve.byPoints( o_st_pts_mirr, 1 );
+	var o_ft_mirr = verb.geom.NurbsCurve.byPoints( o_ft_pts_mirr, 1 );
 
 
 	// add surfaces
 	var bs_crv, bk_crv, tp_crv, sp_crv, st_crv, ft_crv;
 
-	var o_bk_crv = verb.geom.NurbsCurve.byPoints( o_bk_pts, 2 );
-	var o_tp_crv = verb.geom.NurbsCurve.byPoints( o_tp_pts, 2 );
-  var o_sp_crv = verb.geom.NurbsCurve.byPoints( o_sp_pts, 2 );
-	var o_st_crv = verb.geom.NurbsCurve.byPoints( o_st_pts, 2 );
-	var o_ft_crv = verb.geom.NurbsCurve.byPoints( o_ft_pts, 2 );
+	var o_bk_crv = verb.geom.NurbsCurve.byPoints( o_bk_pts, 1 );
+	var o_tp_crv = verb.geom.NurbsCurve.byPoints( o_tp_pts, 1 );
+  var o_sp_crv = verb.geom.NurbsCurve.byPoints( o_sp_pts, 1 );
+	var o_st_crv = verb.geom.NurbsCurve.byPoints( o_st_pts, 1 );
+	var o_ft_crv = verb.geom.NurbsCurve.byPoints( o_ft_pts, 1 );
 
 	bs_crv = 	[
-					verb.geom.NurbsCurve.byPoints( o_bs_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( m_bs_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( o_bs_pts_mirr, 2 )
+					verb.geom.NurbsCurve.byPoints( o_bs_pts, 1 ),
+					verb.geom.NurbsCurve.byPoints( m_bs_pts, 1 ),
+					verb.geom.NurbsCurve.byPoints( o_bs_pts_mirr, 1 )
 				];
-	var srf_bs = verb.geom.NurbsSurface.byLoftingCurves( bs_crv, 2 );
+	var srf_bs = verb.geom.NurbsSurface.byLoftingCurves( bs_crv, 1 );
 
 	bk_crv = 	[
 					o_bk_crv,
-					verb.geom.NurbsCurve.byPoints( m_bk_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( o_bk_pts_mirr, 2 )
+					verb.geom.NurbsCurve.byPoints( m_bk_pts, 1 ),
+					verb.geom.NurbsCurve.byPoints( o_bk_pts_mirr, 1 )
 				];
-	var srf_bk = verb.geom.NurbsSurface.byLoftingCurves( bk_crv, 2 );
+	var srf_bk = verb.geom.NurbsSurface.byLoftingCurves( bk_crv, 1 );
 
 	tp_crv = 	[
 					o_tp_crv,
-					verb.geom.NurbsCurve.byPoints( m_tp_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( o_tp_pts_mirr, 2 )
+					verb.geom.NurbsCurve.byPoints( m_tp_pts, 1 ),
+					verb.geom.NurbsCurve.byPoints( o_tp_pts_mirr, 1 )
 				];
-	var srf_tp = verb.geom.NurbsSurface.byLoftingCurves( tp_crv, 2 );
+	var srf_tp = verb.geom.NurbsSurface.byLoftingCurves( tp_crv, 1 );
 
   sp_crv =  [
           o_sp_crv,
-          verb.geom.NurbsCurve.byPoints( m_sp_pts, 2 ),
-          verb.geom.NurbsCurve.byPoints( o_sp_pts_mirr, 2 )
+          verb.geom.NurbsCurve.byPoints( m_sp_pts, 1 ),
+          verb.geom.NurbsCurve.byPoints( o_sp_pts_mirr, 1 )
         ];
-  var srf_sp = verb.geom.NurbsSurface.byLoftingCurves( sp_crv, 2 );
+  var srf_sp = verb.geom.NurbsSurface.byLoftingCurves( sp_crv, 1 );
 
 	st_crv = 	[
 					o_st_crv,
-					verb.geom.NurbsCurve.byPoints( m_st_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( o_st_pts_mirr, 2 )
+					verb.geom.NurbsCurve.byPoints( m_st_pts, 1 ),
+					verb.geom.NurbsCurve.byPoints( o_st_pts_mirr, 1 )
 				];
-	var srf_st = verb.geom.NurbsSurface.byLoftingCurves( st_crv, 2 );
+	var srf_st = verb.geom.NurbsSurface.byLoftingCurves( st_crv, 1 );
 
 	ft_crv = 	[
 					o_ft_crv,
-					verb.geom.NurbsCurve.byPoints( m_ft_pts, 2 ),
-					verb.geom.NurbsCurve.byPoints( o_ft_pts_mirr, 2 )
+					verb.geom.NurbsCurve.byPoints( m_ft_pts, 1 ),
+					verb.geom.NurbsCurve.byPoints( o_ft_pts_mirr, 1 )
 				];
-	var srf_ft = verb.geom.NurbsSurface.byLoftingCurves( ft_crv, 2 );
+	var srf_ft = verb.geom.NurbsSurface.byLoftingCurves( ft_crv, 1 );
 
 
 	var activeMat = new THREE.MeshPhongMaterial( { side: THREE.DoubleSide, color: 0xd32f2f } );
